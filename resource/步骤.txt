@@ -1,0 +1,15 @@
+1.安装erlang
+2.安装rabbitmq
+3.找到 RabbitMQ Service - start，运行
+4.进入rabbitmq安装目录的 sbin [注意：路径带空格需要用引号包裹]
+cd D:\"Program Files"\"RabbitMQ Server"\rabbitmq_server-3.7.15\sbin
+运行 .\rabbitmq-plugins enable rabbitmq_management
+5.打开 http://localhost:15672，用户名密码 guest [guest不支持远程访问]
+6.配置远程连接
+在web管理后台中，在admin选项卡中 添加一个用户，设置自己的username跟password，权限选择admin，点击adduser
+然后配置添加用户的权限
+
+
+redis windows
+https://github.com/microsoftarchive/redis/releases
+安装redis

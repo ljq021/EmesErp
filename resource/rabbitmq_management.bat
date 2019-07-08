@@ -1,0 +1,1 @@
+D:\"Program Files"\"RabbitMQ Server"\rabbitmq_server-3.7.15\sbin\rabbitmq-plugins enable rabbitmq_management
