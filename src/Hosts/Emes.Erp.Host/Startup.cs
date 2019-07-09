@@ -55,6 +55,7 @@ namespace Emes.Erp.Host
             services.AddEmesDbContext(options =>
                     options.UseSqlServer(con)
             );
+            //
         }
 
 
