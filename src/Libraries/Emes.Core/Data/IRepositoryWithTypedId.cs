@@ -1,5 +1,6 @@
 ﻿using Emes.Core.Models;
 using Microsoft.EntityFrameworkCore.Storage;
+using Surging.Core.CPlatform.Ioc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Emes.Core.Data
 {
-    public interface IRepositoryWithTypedId<TEntity, TEntityId> where TEntity : IEntityWithTypedId<TEntityId>
+    public interface IRepositoryWithTypedId<TEntity, TEntityId> : ITransientDependency where TEntity : IEntityWithTypedId<TEntityId>, IAggregateRoot
     {
         #region Methods
 

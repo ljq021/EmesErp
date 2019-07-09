@@ -1,6 +1,7 @@
 ﻿using Emes.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Surging.Core.CPlatform.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Emes.Core.Data
 {
-    public class RepositoryWithTypedId<TEntity, TEntityId> : IRepositoryWithTypedId<TEntity, TEntityId> where TEntity : class, IEntityWithTypedId<TEntityId>
+    public class RepositoryWithTypedId<TEntity, TEntityId> :  IRepositoryWithTypedId<TEntity, TEntityId> where TEntity : EntityBase, IEntityWithTypedId<TEntityId>, IAggregateRoot
     {
-        protected readonly DbContext _context;
+        protected readonly IDbContext _context;
 
         protected DbSet<TEntity> _entities;
 
-        public RepositoryWithTypedId(EmesDbContext context)
+        public RepositoryWithTypedId(IDbContext context)
         {
             _context = context;
         }
@@ -69,7 +70,7 @@ namespace Emes.Core.Data
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync(cancellationToken);
         }
 
         /// <summary>

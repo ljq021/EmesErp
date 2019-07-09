@@ -1,5 +1,7 @@
 ﻿using Emes.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Surging.Core.CPlatform.Ioc;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace Emes.Core.Data
     /// </summary>
     public partial interface IDbContext
     {
+        DatabaseFacade Database { get; }
         #region Methods
 
         /// <summary>
@@ -21,8 +24,11 @@ namespace Emes.Core.Data
         DbSet<TEntity> Set<TEntity>() where TEntity : EntityBase;
 
 
+        int SaveChanges();
+
         int SaveChanges(bool acceptAllChangesOnSuccess);
 
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>

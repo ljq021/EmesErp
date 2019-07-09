@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Surging.Core.AutoMapper" Version="61.1.0" />
+    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Emes.Core\Emes.Core.csproj" />
+    <ProjectReference Include="..\Emes.Erp.ISystem\Emes.Erp.ISystem.csproj" />
+  </ItemGroup>
+
+</Project>

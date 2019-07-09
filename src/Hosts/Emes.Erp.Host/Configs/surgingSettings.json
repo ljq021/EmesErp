@@ -26,7 +26,7 @@
     "Packages": [
       {
         "TypeName": "EnginePartModule",
-        "Using": "${UseEngineParts}|DotNettyModule;NLogModule;MessagePackModule;ConsulModule;WSProtocolModule;MqttProtocolModule;EventBusRabbitMQModule;CachingModule;KestrelHttpModule;DnsProtocolModule;SwaggerModule;SpaModule;"
+        "Using": "${UseEngineParts}|DotNettyModule;NLogModule;MessagePackModule;ConsulModule;WSProtocolModule;MqttProtocolModule;EventBusRabbitMQModule;CachingModule;KestrelHttpModule;DnsProtocolModule;SwaggerModule;StageModule;AutoMapperModule;SpaModule;EmesCoreModule;"
       }
     ]
   }, //如果引用多个同类型的组件，需要配置Packages，如果是自定义按需引用，无需配置Packages
@@ -53,17 +53,8 @@
   "Swagger": {
     "Info": {
       "Version": "${SwaggerVersion}|V1", // "127.0.0.1:8500",
-      "Title": "${SwaggerTitle}|Surging Demo",
-      "Description": "${SwaggerDes}|surging demo",
-      "Contact": {
-        "Name": "API Support",
-        "Url": "https://github.com/dotnetcore/surging",
-        "Email": "fanliang1@hotmail.com"
-      },
-      "License": {
-        "Name": "MIT",
-        "Url": "https://github.com/dotnetcore/surging/blob/master/LICENSE"
-      }
+      "Title": "${SwaggerTitle}|Emes Api Doc",
+      "Description": "${SwaggerDes}|Emes Api Doc"
     },
     "Options": {
       "IgnoreFullyQualified": false
@@ -87,7 +78,7 @@
     "EnableAutoCommit": "${EnableAutoCommit}|false",
     "LogConnectionClose": "${LogConnectionClose}|false",
     "OffsetReset": "${OffsetReset}|earliest",
-    "GroupID": "${EventBusGroupID}|surgingdemo"
+    "GroupID": "${EventBusGroupID}|Emes_erp"
   },
   "WebSocket": {
     "WaitTime": 2,
@@ -106,7 +97,7 @@
     "RetryCount": "${RetryCount}|1",
     "FailCount": "${FailCount}|3",
     "prefetchCount": "${PrefetchCount}|0",
-    "BrokerName": "${BrokerName}|surging_demo",
+    "BrokerName": "${BrokerName}|Emes_erp",
     "Port": "${EventBusPort}|5672"
   },
   "Zookeeper": {
@@ -137,5 +128,11 @@
     "LogLevel": {
       "Default": "${LogLevel}|Debug"
     }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source = 127.0.0.1;Initial Catalog = EmesErp;User Id = sa;Password = 123456;"
+  },
+  "Automapper": {
+    "Assemblies": "Emes.Erp.ISystem;Surging.*.Common;"
   }
 }

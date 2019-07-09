@@ -1,10 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Emes.Core.Extensions.EF;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
+using Surging.Core.CPlatform;
 
 namespace Emes.Erp.Host
 {
@@ -12,14 +14,15 @@ namespace Emes.Erp.Host
     {
         public Startup(IConfigurationBuilder config)
         {
-          ConfigureEventBus(config);
-          //  ConfigureCache(config);
+            ConfigureEventBus(config);
+      
         }
 
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
             ConfigureLogging(services);
+            ConfigureSql(services);
             builder.Populate(services);
             ServiceLocator.Current = builder.Build();
             return ServiceLocator.Current;
@@ -27,7 +30,7 @@ namespace Emes.Erp.Host
 
         public void Configure(IContainer app)
         {
-   
+
         }
 
         #region 私有方法
@@ -37,23 +40,24 @@ namespace Emes.Erp.Host
         /// <param name="services"></param>
         private void ConfigureLogging(IServiceCollection services)
         {
-           // services.AddLogging();
+            services.AddLogging();
         }
 
         private static void ConfigureEventBus(IConfigurationBuilder build)
         {
             build
-            .AddEventBusFile("eventBusSettings.json", optional: false);
+            .AddEventBusFile("Configs/eventBusSettings.json", optional: false);
         }
 
-        /// <summary>
-        /// 配置缓存服务
-        /// </summary>
-        private void ConfigureCache(IConfigurationBuilder build)
+        private static void ConfigureSql(IServiceCollection services)
         {
-            build
-              .AddCacheFile("cacheSettings.json", optional: false);
+            var con = AppConfig.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
+            services.AddEmesDbContext(options =>
+                    options.UseSqlServer(con)
+            );
         }
+
+
         #endregion
 
     }
