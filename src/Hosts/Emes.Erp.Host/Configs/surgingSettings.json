@@ -134,5 +134,8 @@
   },
   "Automapper": {
     "Assemblies": "Emes.Erp.ISystem;Surging.*.Common;"
+  },
+  "EmesCore": {
+    "Assemblies": "Emes.Erp.System;Surging.*.Common;"
   }
 }

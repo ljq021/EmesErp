@@ -6,6 +6,7 @@ namespace Emes.Core.Models
 {
     public abstract class ValidatableObject
     {
+        private string _message;
         public virtual bool IsValid()
         {
             return Validate().Count == 0;
@@ -17,7 +18,7 @@ namespace Emes.Core.Models
             Validator.TryValidateObject(this, new ValidationContext(this, null, null), validationResults, true);
             for (int i = 0; i < validationResults.Count(); i++)
             {
-                Message += validationResults[i].ErrorMessage + (i == validationResults.Count() - 1 ? "" : "__");
+                _message += validationResults[i].ErrorMessage + (i == validationResults.Count() - 1 ? "" : "__");
             }
             return validationResults;
         }
@@ -25,6 +26,9 @@ namespace Emes.Core.Models
         /// <summary>
         /// 验证信息，在IsValid方法调用后才会赋值
         /// </summary>
-        public string Message { get; set; }
+        public string Message()
+        {
+            return _message;
+        }
     }
 }

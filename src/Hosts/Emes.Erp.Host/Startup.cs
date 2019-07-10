@@ -15,7 +15,7 @@ namespace Emes.Erp.Host
         public Startup(IConfigurationBuilder config)
         {
             ConfigureEventBus(config);
-      
+
         }
 
         public IContainer ConfigureServices(ContainerBuilder builder)
@@ -53,9 +53,8 @@ namespace Emes.Erp.Host
         {
             var con = AppConfig.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
             services.AddEmesDbContext(options =>
-                    options.UseSqlServer(con)
+                    options.UseSqlServer(con, b => b.MigrationsAssembly("Emes.Erp.Host"))
             );
-            //
         }
 
 

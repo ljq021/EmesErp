@@ -26,11 +26,31 @@ namespace Emes.Erp.System.Implementation
 
             if (request.IsValid())
             {
-                return Result.Fail<OrganizationDto>(request.Message);
+                var org = new Organization
+                {
+                    ParentId = request.ParentId,
+                    No = request.No,
+                    Name = request.Name,
+                    MnemonicCode = request.MnemonicCode,
+                    IsFiliale = request.IsFiliale,
+                    IsSubbranch = request.IsSubbranch
+                };
+                _orgRepository.Add(org);
+                var orgDto = new OrganizationDto
+                {
+                    ParentId = request.ParentId,
+                    No = request.No,
+                    Name = request.Name,
+                    MnemonicCode = request.MnemonicCode,
+                    IsFiliale = request.IsFiliale,
+                    IsSubbranch = request.IsSubbranch,
+                    Id = org.Id
+                };
+                return Result.Ok<OrganizationDto>(orgDto);
             }
             else
             {
-                return Result.Fail<OrganizationDto>(request.Message);
+                return Result.Fail<OrganizationDto>(request.Message());
             }
         }
 
