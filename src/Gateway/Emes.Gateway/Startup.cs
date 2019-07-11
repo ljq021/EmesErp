@@ -1,70 +1,137 @@
+﻿using System;
+using System.Linq;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Emes.Gateway.Filter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
+using Surging.Core.ApiGateWay;
+using Surging.Core.ApiGateWay.Configurations;
+using Surging.Core.ApiGateWay.OAuth.Implementation.Configurations;
+using Surging.Core.Caching;
+using Surging.Core.Caching.Configurations;
+using Surging.Core.Codec.MessagePack;
+using Surging.Core.Consul;
+using Surging.Core.Consul.Configurations;
+using Surging.Core.CPlatform;
+using Surging.Core.CPlatform.Cache;
+using Surging.Core.CPlatform.Utilities;
+using Surging.Core.DotNetty;
+using Surging.Core.ProxyGenerator;
+using Surging.Core.Zookeeper;
+using ApiGateWayConfig = Surging.Core.ApiGateWay.AppConfig;
+using ZookeeperConfigInfo = Surging.Core.Zookeeper.Configurations.ConfigInfo;
 
 namespace Emes.Gateway
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot Configuration { get; }
+
+        public IContainer ApplicationContainer { get; private set; }
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+              .SetBasePath(env.ContentRootPath)
+              .AddCacheFile("Configs/cacheSettings.json", optional: false)
+              .AddJsonFile("Configs/appsettings.json", optional: true, reloadOnChange: true)
+              .AddGatewayFile("Configs/gatewaySettings.json", optional: false)
+              .AddJsonFile($"Configs/appsettings.{env.EnvironmentName}.json", optional: true);
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            return RegisterAutofac(services);
+        }
 
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+        private IServiceProvider RegisterAutofac(IServiceCollection services)
+        {
+            var registerConfig = ApiGateWayConfig.Register;
+
+            services.AddMvc(options =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                options.EnableEndpointRouting = false;
+                options.Filters.Add(typeof(CustomExceptionFilterAttribute));
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
+            services.AddLogging(logging =>
+            {
+                logging.AddConsole();
+            });
+            services.AddCors();
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            builder.AddMicroService(option =>
+            {
+                option.AddClient();
+                option.AddCache();
+                if (registerConfig.Provider == RegisterProvider.Consul)
+                    option.UseConsulManager(new ConfigInfo(registerConfig.Address, enableChildrenMonitor: false));
+                else if (registerConfig.Provider == RegisterProvider.Zookeeper)
+                    option.UseZooKeeperManager(new ZookeeperConfigInfo(registerConfig.Address, enableChildrenMonitor: true));
+                option.UseDotNettyTransport();
+                option.AddApiGateWay();
+                option.AddFilter(new ServiceExceptionFilter());
+                option.UseMessagePackCodec();
+                builder.Register(m => new CPlatformContainer(ServiceLocator.Current));
+            });
+            ServiceLocator.Current = builder.Build();
+            return new AutofacServiceProvider(ServiceLocator.Current);
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            var serviceCacheProvider = ServiceLocator.Current.Resolve<ICacheNodeProvider>();
+            var addressDescriptors = serviceCacheProvider.GetServiceCaches().ToList();
+            ServiceLocator.Current.Resolve<IServiceCacheManager>().SetCachesAsync(addressDescriptors);
+            ServiceLocator.Current.Resolve<IConfigurationWatchProvider>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseHttpsRedirection();
+            app.UseCors(builder =>
+            {
+                var policy = Surging.Core.ApiGateWay.AppConfig.Policy;
+                builder.WithOrigins(policy.Origins);
+                if (policy.AllowAnyHeader)
+                    builder.AllowAnyHeader();
+                if (policy.AllowAnyMethod)
+                    builder.AllowAnyMethod();
+                if (policy.AllowAnyOrigin)
+                    builder.AllowAnyOrigin();
+                if (policy.AllowCredentials)
+                    builder.AllowCredentials();
+            });
+            var myProvider = new FileExtensionContentTypeProvider();
+            myProvider.Mappings.Add(".tpl", "text/plain");
+            app.UseStaticFiles(new StaticFileOptions() { ContentTypeProvider = myProvider });
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                routes.MapRoute(
+                "Path",
+                "{*path}",
+                new { controller = "Services", action = "Path" });
             });
         }
     }

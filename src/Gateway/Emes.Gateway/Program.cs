@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace Emes.Gateway
 {
@@ -13,11 +8,15 @@ namespace Emes.Gateway
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = new WebHostBuilder()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseKestrel()
+            .UseUrls("http://*:6631")
+            .UseIISIntegration()
+            .UseStartup<Startup>()
+            .UseApplicationInsights()
+            .Build();
+            host.Run();
         }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
     }
 }
