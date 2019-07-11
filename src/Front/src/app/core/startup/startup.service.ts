@@ -104,18 +104,34 @@ export class StartupService {
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
       {
-        text: 'Main',
+        text: '系统',
         group: true,
         children: [
           {
-            text: 'Dashboard',
-            link: '/dashboard',
+            text: '组织管理',
             icon: { type: 'icon', value: 'appstore' },
-          },
-          {
-            text: 'Quick Menu',
-            icon: { type: 'icon', value: 'rocket' },
-            shortcutRoot: true,
+            children: [
+              {
+                text: '组织机构管理',
+                link: '/dashboard/v1',
+              },
+              {
+                text: '岗位管理',
+                link: '/dashboard/v1',
+              },
+              {
+                text: '角色管理',
+                link: '/dashboard/v1',
+              },
+              {
+                text: '用户管理',
+                link: '/dashboard/v1',
+              },
+              {
+                text: '组织机构图',
+                link: '/dashboard/v1',
+              },
+            ],
           },
         ],
       },

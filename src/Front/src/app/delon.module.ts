@@ -1,4 +1,3 @@
-
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { throwIfAlreadyLoaded } from '@core';
 
@@ -41,7 +40,7 @@ import { PageHeaderConfig } from '@delon/abc';
 export function fnPageHeaderConfig(): PageHeaderConfig {
   return {
     ...new PageHeaderConfig(),
-    homeI18n: 'home',
+    homeI18n: '首页',
   };
 }
 

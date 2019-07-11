@@ -15,7 +15,7 @@ namespace Emes.Core
             {
                 return new
                 {
-                    OrgId = 0,
+                    TenantId = 0,
                     Id = 0
                 };
             }

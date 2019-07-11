@@ -6,7 +6,7 @@ namespace Emes.Core.Models
     {
         public virtual TId Id { get; set; }
 
-        public virtual long OrgId { get; set; }
+        public virtual long TenantId { get; set; }
         public virtual int Version { get; set; }
         public virtual DateTimeOffset CreatedOn { get; set; }
         public virtual DateTimeOffset UpdatedOn { get; set; }
