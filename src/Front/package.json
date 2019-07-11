@@ -91,17 +91,17 @@
   },
   "lint-staged": {
     "linters": {
-      "src/**/*.ts": [
+      "src/Front/src/**/*.ts": [
         "npm run lint:ts",
         "git add"
       ],
-      "src/**/*.less": [
+      "src/Front/src/**/*.less": [
         "npm run lint:style",
         "git add"
       ]
     },
     "ignore": [
-      "src/assets/*"
+      "src/Front/src/assets/*"
     ]
   },
   "husky": {
