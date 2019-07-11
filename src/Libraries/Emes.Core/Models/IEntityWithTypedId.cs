@@ -5,7 +5,7 @@ namespace Emes.Core.Models
     public interface IEntity
     {
 
-        long OrgId { get; set; }
+        long TenantId { get; set; }
 
         int Version { get; set; }
         DateTimeOffset CreatedOn { get; set; }

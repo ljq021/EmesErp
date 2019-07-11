@@ -13,7 +13,11 @@ namespace Emes.Core
             var payload = RpcContext.GetContext().GetAttachment("payload");
             if (payload == null)
             {
-                return null;
+                return new
+                {
+                    TenantId = 0,
+                    Id = 0
+                };
             }
             else
             {

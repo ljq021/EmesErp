@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Emes.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Surging.Core.CPlatform.Module;
+using CPlatformAppConfig = Surging.Core.CPlatform.AppConfig;
 
 namespace Emes.Core
 {
@@ -19,6 +21,11 @@ namespace Emes.Core
         protected override void RegisterBuilder(ContainerBuilderWrapper builder)
         {
             base.RegisterBuilder(builder);
+            var configAssembliesStr = CPlatformAppConfig.GetSection("EmesCore:Assemblies").Get<string>();
+            if (!string.IsNullOrEmpty(configAssembliesStr))
+            {
+                AppConfig.AssembliesStrings = configAssembliesStr.Split(";");
+            }
             //builder.RegisterType<EmesDbContext>().As<IDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<DefaultIdWorker>().As<IIdWorker>().InstancePerLifetimeScope();
             builder.Register(context => new EmesDbContext(context.Resolve<DbContextOptions<EmesDbContext>>()))

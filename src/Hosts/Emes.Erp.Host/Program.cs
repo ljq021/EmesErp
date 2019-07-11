@@ -1,5 +1,8 @@
-﻿using Autofac;
+﻿using System;
+using System.Text;
+using Autofac;
 using Microsoft.Extensions.Logging;
+using Surging.Core.AutoMapper;
 using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform;
 using Surging.Core.CPlatform.Configurations;
@@ -7,8 +10,6 @@ using Surging.Core.CPlatform.Utilities;
 using Surging.Core.ProxyGenerator;
 using Surging.Core.ServiceHosting;
 using Surging.Core.ServiceHosting.Internal.Implementation;
-using System;
-using System.Text;
 
 namespace Emes.Erp.Host
 {
@@ -33,7 +34,7 @@ namespace Emes.Erp.Host
                 .ConfigureLogging(logger =>
                 {
                     logger.AddConfiguration(
-                        AppConfig.GetSection("Logging"));
+                        Surging.Core.CPlatform.AppConfig.GetSection("Logging"));
                 })
                 .UseServer(options => { })
                 .UseConsoleLifetime()

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Emes.Erp.System.Models;
+using Surging.Core.AutoMapper;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
@@ -14,9 +14,7 @@ namespace Emes.Erp.System.Implementation
     public class OrganizationService : ProxyServiceBase, IOrganizationService
     {
         private readonly IRepository<Organization> _orgRepository;
-        //private readonly IMapper _mapper;
         public OrganizationService(IRepository<Organization> orgRepository
-            //IMapper mapper
             )
         {
             _orgRepository = orgRepository;
@@ -26,11 +24,13 @@ namespace Emes.Erp.System.Implementation
 
             if (request.IsValid())
             {
-                return Result.Fail<OrganizationDto>(request.Message);
+                var org = request.MapTo<Organization>();
+                _orgRepository.Add(org);
+                return Result.Ok(org.MapTo<OrganizationDto>());
             }
             else
             {
-                return Result.Fail<OrganizationDto>(request.Message);
+                return Result.Fail<OrganizationDto>(request.Message());
             }
         }
 

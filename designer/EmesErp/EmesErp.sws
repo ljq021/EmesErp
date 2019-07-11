@@ -6,5 +6,5 @@
 	<Local Expanded="Yes" Name="EmesErp">
 		<Model Expanded="Yes" ID="{5244F5CB-DF93-4242-B705-54A344795306}" Name="EmesErp" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="EmesErp.prj"/>
 	</Local>
-	<BrowserModule Name="仓库(&amp;R)"/>
+	<BrowserModule Name="Repository"/>
 </Workspace>

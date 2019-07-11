@@ -97,9 +97,9 @@ namespace Emes.Core.Data
                 {
                     var tempEntity = (IEntity)entity;
                     var user = WorkContext.GetCurrentUser();
-                    if (tempEntity.OrgId <= 0)
+                    if (tempEntity.TenantId <= 0)
                     {
-                        tempEntity.OrgId = user.OrgId;
+                        tempEntity.TenantId = user.TenantId;
                     }
                     tempEntity.Version++;
                     tempEntity.CreatedOn = DateTimeOffset.UtcNow;
@@ -140,9 +140,9 @@ namespace Emes.Core.Data
                     {
                         var tempEntity = (IEntity)entity;
 
-                        if (tempEntity.OrgId <= 0)
+                        if (tempEntity.TenantId <= 0)
                         {
-                            tempEntity.OrgId = user.OrgId;
+                            tempEntity.TenantId = user.TenantId;
                         }
                         tempEntity.Version++;
                         tempEntity.CreatedOn = DateTimeOffset.UtcNow;

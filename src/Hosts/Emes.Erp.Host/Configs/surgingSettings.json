@@ -133,6 +133,9 @@
     "DefaultConnection": "Data Source = 127.0.0.1;Initial Catalog = EmesErp;User Id = sa;Password = 123456;"
   },
   "Automapper": {
-    "Assemblies": "Emes.Erp.ISystem;Surging.*.Common;"
+    "Assemblies": "Emes.Erp.System;Surging.*.Common;"
+  },
+  "EmesCore": {
+    "Assemblies": "Emes.Erp.System;Surging.*.Common;"
   }
 }
