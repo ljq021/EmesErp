@@ -4,9 +4,9 @@ using Emes.Core.Extensions.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Surging.Core.CPlatform;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
-using Surging.Core.CPlatform;
 
 namespace Emes.Erp.Host
 {

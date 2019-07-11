@@ -1,11 +1,14 @@
-﻿using Emes.Core.Dtos;
+﻿using System.ComponentModel.DataAnnotations;
+using Emes.Core.Dtos;
 
 namespace Emes.Erp.ISystem.Dtos.Organizations
 {
-    public class OrganizationDto: DtoWithIdBase
+    public class OrganizationDto : DtoWithIdBase
     {
         public long ParentId { get; set; }
+
         public string No { get; set; }
+
         public string Name { get; set; }
         public string MnemonicCode { get; set; }
         public bool IsFiliale { get; set; }

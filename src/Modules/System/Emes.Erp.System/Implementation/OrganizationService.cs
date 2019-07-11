@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Emes.Erp.System.Models;
+using Surging.Core.AutoMapper;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
@@ -14,9 +14,7 @@ namespace Emes.Erp.System.Implementation
     public class OrganizationService : ProxyServiceBase, IOrganizationService
     {
         private readonly IRepository<Organization> _orgRepository;
-        //private readonly IMapper _mapper;
         public OrganizationService(IRepository<Organization> orgRepository
-            //IMapper mapper
             )
         {
             _orgRepository = orgRepository;
@@ -26,27 +24,9 @@ namespace Emes.Erp.System.Implementation
 
             if (request.IsValid())
             {
-                var org = new Organization
-                {
-                    ParentId = request.ParentId,
-                    No = request.No,
-                    Name = request.Name,
-                    MnemonicCode = request.MnemonicCode,
-                    IsFiliale = request.IsFiliale,
-                    IsSubbranch = request.IsSubbranch
-                };
+                var org = request.MapTo<Organization>();
                 _orgRepository.Add(org);
-                var orgDto = new OrganizationDto
-                {
-                    ParentId = request.ParentId,
-                    No = request.No,
-                    Name = request.Name,
-                    MnemonicCode = request.MnemonicCode,
-                    IsFiliale = request.IsFiliale,
-                    IsSubbranch = request.IsSubbranch,
-                    Id = org.Id
-                };
-                return Result.Ok<OrganizationDto>(orgDto);
+                return Result.Ok(org.MapTo<OrganizationDto>());
             }
             else
             {
