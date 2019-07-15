@@ -1,3 +1,7 @@
+/**
+ * 进一步对基础模块的导入提炼
+ * 有关模块注册指导原则请参考：https://ng-alain.com/docs/module
+ */
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { throwIfAlreadyLoaded } from '@core';
 
@@ -40,7 +44,7 @@ import { PageHeaderConfig } from '@delon/abc';
 export function fnPageHeaderConfig(): PageHeaderConfig {
   return {
     ...new PageHeaderConfig(),
-    homeI18n: '首页',
+    homeI18n: 'home',
   };
 }
 
