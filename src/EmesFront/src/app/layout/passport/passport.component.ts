@@ -6,18 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./passport.component.less'],
 })
 export class LayoutPassportComponent {
-  links = [
+  carouselArray = [
     {
-      title: '帮助',
-      href: '',
+      imgUrl: './assets/images/passport-bg1.jpeg',
     },
     {
-      title: '隐私',
-      href: '',
-    },
-    {
-      title: '条款',
-      href: '',
+      imgUrl: './assets/images/passport-bg2.jpeg',
     },
   ];
+
+  links = [];
 }
