@@ -51,6 +51,85 @@ namespace Emes.Erp.Host.Migrations
 
                     b.ToTable("System_Organization");
                 });
+
+            modelBuilder.Entity("Emes.Erp.System.Models.Post", b =>
+                {
+                    b.Property<long>("Id");
+
+                    b.Property<long>("CreatedById");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<string>("Desc");
+
+                    b.Property<bool>("IsKey");
+
+                    b.Property<string>("MnemonicCode");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("No");
+
+                    b.Property<long>("OrgId");
+
+                    b.Property<string>("Responsibility");
+
+                    b.Property<long>("TenantId");
+
+                    b.Property<int>("Type");
+
+                    b.Property<long>("UpdatedById");
+
+                    b.Property<DateTimeOffset>("UpdatedOn");
+
+                    b.Property<int>("Version");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("System_Post");
+                });
+
+            modelBuilder.Entity("Emes.Erp.System.Models.Role", b =>
+                {
+                    b.Property<long>("Id");
+
+                    b.Property<long>("CreatedById");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<long>("TenantId");
+
+                    b.Property<long>("UpdatedById");
+
+                    b.Property<DateTimeOffset>("UpdatedOn");
+
+                    b.Property<int>("Version");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("System_Role");
+                });
+
+            modelBuilder.Entity("Emes.Erp.System.Models.User", b =>
+                {
+                    b.Property<long>("Id");
+
+                    b.Property<long>("CreatedById");
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<long>("TenantId");
+
+                    b.Property<long>("UpdatedById");
+
+                    b.Property<DateTimeOffset>("UpdatedOn");
+
+                    b.Property<int>("Version");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("System_User");
+                });
 #pragma warning restore 612, 618
         }
     }
