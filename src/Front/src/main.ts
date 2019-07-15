@@ -4,6 +4,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import { LicenseManager } from 'ag-grid-emes';
+LicenseManager.setLicenseKey(
+  'fvD4zeQKw67tN/bhxuXOVhHoftG6m6u0lFIsoOGscUiow/oOO6xc1N6VWJmZPKieP+lf10o6M7CrfG9vdAoP5w8pDMeEAxxIWxctucV9LhlIE5+tvI0EwfN125PrUFDqSeVKUobgS1Vps4PRVv/iqhwgEvEMO6tK9Kd+XNBkcXM=',
+);
+
 import { preloaderFinished } from '@delon/theme';
 preloaderFinished();
 
