@@ -97,6 +97,12 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<DateTimeOffset>("CreatedOn");
 
+                    b.Property<bool>("IsSystemRole");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Notes");
+
                     b.Property<long>("TenantId");
 
                     b.Property<long>("UpdatedById");
@@ -117,6 +123,22 @@ namespace Emes.Erp.Host.Migrations
                     b.Property<long>("CreatedById");
 
                     b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<DateTimeOffset>("EffectiveDate");
+
+                    b.Property<bool>("IsLimitDuplicateLogin");
+
+                    b.Property<bool>("IsLock");
+
+                    b.Property<bool>("IsSystemAccount");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("SystemName");
 
                     b.Property<long>("TenantId");
 

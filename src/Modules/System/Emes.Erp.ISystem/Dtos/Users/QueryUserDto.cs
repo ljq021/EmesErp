@@ -4,5 +4,6 @@ namespace Emes.Erp.ISystem.Dtos.Users
 {
     public class QueryUserDto : DtoBase
     {
+        public string Name { get; set; }
     }
 }

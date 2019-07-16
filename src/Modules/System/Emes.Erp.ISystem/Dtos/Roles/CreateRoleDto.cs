@@ -7,7 +7,7 @@ namespace Emes.Erp.ISystem.Dtos.Roles
 {
     public class CreateRoleDto : DtoBase
     {
-        public string Name;
-        public string Notes;
+        public string Name { get; set; }
+        public string Notes { get; set; }
     }
 }

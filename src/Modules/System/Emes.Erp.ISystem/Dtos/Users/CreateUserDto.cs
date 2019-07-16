@@ -7,11 +7,11 @@ namespace Emes.Erp.ISystem.Dtos.Users
 {
    public class CreateUserDto : DtoBase
     {
-        public string Name;
-        public string Password;
-        public bool IsLock;
-        public DateTimeOffset EffectiveDate;
-        public bool IsLimitDuplicateLogin;
-        public string Notes;
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public bool IsLock { get; set; }
+        public DateTimeOffset EffectiveDate { get; set; }
+        public bool IsLimitDuplicateLogin { get; set; }
+        public string Notes { get; set; }
     }
 }

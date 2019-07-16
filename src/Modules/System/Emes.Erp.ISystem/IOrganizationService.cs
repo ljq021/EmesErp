@@ -38,7 +38,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<Result<IList<OrganizationDto>>> Query(QueryOrganizationDto request);
+        Task<Result<IEnumerable<OrganizationDto>>> Query(QueryOrganizationDto request);
 
         /// <summary>
         /// 根据Id获取组织机构

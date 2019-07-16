@@ -4,6 +4,6 @@ namespace Emes.Erp.ISystem.Dtos.Posts
 {
     public class QueryPostDto : DtoBase
     {
-
+        public string Name { get; set; }
     }
 }

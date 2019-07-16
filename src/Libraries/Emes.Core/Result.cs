@@ -55,9 +55,19 @@ namespace Emes.Core
             return Task.FromResult(new Result(false, "数据记录不存在") { Code = (int)ResultCode.NotFound });
         }
 
+        public static Task<Result<TValue>> NotFound<TValue>()
+        {
+            return Task.FromResult(new Result<TValue>(default(TValue), false, "数据记录不存在") { Code = (int)ResultCode.NotFound });
+        }
+
         public static Task<Result> Forbidden()
         {
             return Task.FromResult(new Result(false, "无权限访问") { Code = (int)ResultCode.Forbidden });
+        }
+
+        public static Task<Result<TValue>> Forbidden<TValue>()
+        {
+            return Task.FromResult(new Result<TValue>(default(TValue), false, "无权限访问") { Code = (int)ResultCode.Forbidden });
         }
     }
 }

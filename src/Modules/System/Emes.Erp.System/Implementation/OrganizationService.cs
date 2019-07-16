@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Emes.Core;
 using Emes.Core.Data;
@@ -21,7 +22,6 @@ namespace Emes.Erp.System.Implementation
         }
         public Task<Result<OrganizationDto>> Create(CreateOrganizationDto request)
         {
-
             if (request.IsValid())
             {
                 var org = request.MapTo<Organization>();
@@ -34,24 +34,65 @@ namespace Emes.Erp.System.Implementation
             }
         }
 
-        public Task<Result<OrganizationDto>> Delete(DeleteOrganizationDto request)
+        public async Task<Result<OrganizationDto>> Delete(DeleteOrganizationDto request)
         {
-            throw new NotImplementedException();
+            if (request.IsValid())
+            {
+                var org = await _orgRepository.GetById(request.Id);
+                if (org != null)
+                {
+                    await _orgRepository.Remove(org);
+                    return await Result.Ok(org.MapTo<OrganizationDto>());
+                }
+                return await Result.NotFound<OrganizationDto>();
+
+            }
+            else
+            {
+                return await Result.Fail<OrganizationDto>(request.Message());
+            }
         }
 
-        public Task<Result<OrganizationDto>> GetById(long id)
+        public async Task<Result<OrganizationDto>> GetById(long id)
         {
-            throw new NotImplementedException();
+
+            var org = await _orgRepository.GetById(id);
+            if (org != null)
+            {
+                return await Result.Ok(org.MapTo<OrganizationDto>());
+            }
+            return await Result.NotFound<OrganizationDto>();
+
         }
 
-        public Task<Result<IList<OrganizationDto>>> Query(QueryOrganizationDto request)
+        public Task<Result<IEnumerable<OrganizationDto>>> Query(QueryOrganizationDto request)
         {
-            throw new NotImplementedException();
+            var query = _orgRepository.Query;
+            if (!string.IsNullOrEmpty(request.Name))
+            {
+                query = query.Where(q => q.Name.Contains(request.Name));
+            }
+            return Result.Ok(query.MapTo<OrganizationDto>());
+            ;
         }
 
-        public Task<Result<OrganizationDto>> Update(UpdateOrganizationDto request)
+        public async Task<Result<OrganizationDto>> Update(UpdateOrganizationDto request)
         {
-            throw new NotImplementedException();
+            if (request.IsValid())
+            {
+                var org = await _orgRepository.GetById(request.Id);
+                if (org != null)
+                {
+                    await _orgRepository.Update(org);
+                    return await Result.Ok(org.MapTo<OrganizationDto>());
+                }
+                return await Result.NotFound<OrganizationDto>();
+
+            }
+            else
+            {
+                return await Result.Fail<OrganizationDto>(request.Message());
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Emes.Core.Data
 {
-    public class RepositoryWithTypedId<TEntity, TEntityId> :  IRepositoryWithTypedId<TEntity, TEntityId> where TEntity : EntityBase, IEntityWithTypedId<TEntityId>, IAggregateRoot
+    public class RepositoryWithTypedId<TEntity, TEntityId> : IRepositoryWithTypedId<TEntity, TEntityId> where TEntity : EntityBase, IEntityWithTypedId<TEntityId>, IAggregateRoot
     {
         protected readonly IDbContext _context;
 
@@ -80,7 +80,7 @@ namespace Emes.Core.Data
         /// <returns>Entity</returns>
         public virtual async Task<TEntity> GetById(TEntityId id, CancellationToken cancellationToken = default)
         {
-            return await Entities.FindAsync(id, cancellationToken);
+            return await Entities.FindAsync(keyValues: new object[] { id }, cancellationToken);
         }
 
         /// <summary>

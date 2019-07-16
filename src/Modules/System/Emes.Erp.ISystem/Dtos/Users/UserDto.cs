@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Emes.Core.Dtos;
 
 namespace Emes.Erp.ISystem.Dtos.Users
 {
-   public  class UserDto
+    public  class UserDto : DtoWithIdBase
     {
-        public string Name;
-        public string Password;
-        public string SystemName;
-        public bool IsLock;
-        public DateTimeOffset EffectiveDate;
-        public bool IsLimitDuplicateLogin;
-        public string Notes;
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string SystemName { get; set; }
+        public bool IsLock { get; set; }
+        public DateTimeOffset EffectiveDate { get; set; }
+        public bool IsLimitDuplicateLogin { get; set; }
+        public string Notes { get; set; }
     }
 }
