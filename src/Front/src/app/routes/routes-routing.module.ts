@@ -15,19 +15,27 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
+import { ACLGuard } from '@delon/acl';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutDefaultComponent,
-    canActivate: [SimpleGuard],
+    canActivate: [ACLGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘' } },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
       // 业务子模块
-      // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
-    ]
+      { path: 'cost', loadChildren: () => import('./cost/cost.module').then(m => m.CostModule) },
+      { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
+      { path: 'purchase', loadChildren: () => import('./purchase/purchase.module').then(m => m.PurchaseModule) },
+      { path: 'quality', loadChildren: () => import('./quality/quality.module').then(m => m.QualityModule) },
+      { path: 'report', loadChildren: () => import('./report/report.module').then(m => m.ReportModule) },
+      { path: 'sale', loadChildren: () => import('./sale/sale.module').then(m => m.SaleModule) },
+      { path: 'stock', loadChildren: () => import('./stock/stock.module').then(m => m.StockModule) },
+      { path: 'system', loadChildren: () => import('./system/system.module').then(m => m.SystemModule) },
+    ],
   },
   // 全屏布局
   // {
@@ -45,7 +53,7 @@ const routes: Routes = [
       { path: 'register', component: UserRegisterComponent, data: { title: '注册' } },
       { path: 'register-result', component: UserRegisterResultComponent, data: { title: '注册结果' } },
       { path: 'lock', component: UserLockComponent, data: { title: '锁屏' } },
-    ]
+    ],
   },
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
@@ -54,14 +62,13 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      routes, {
-        useHash: environment.useHash,
-        // NOTICE: If you use `reuse-tab` component and turn on keepingScroll you can set to `disabled`
-        // Pls refer to https://ng-alain.com/components/reuse-tab
-        scrollPositionRestoration: 'top',
-      }
-    )],
+    RouterModule.forRoot(routes, {
+      useHash: environment.useHash,
+      // NOTICE: If you use `reuse-tab` component and turn on keepingScroll you can set to `disabled`
+      // Pls refer to https://ng-alain.com/components/reuse-tab
+      scrollPositionRestoration: 'top',
+    }),
+  ],
   exports: [RouterModule],
 })
-export class RouteRoutingModule { }
+export class RouteRoutingModule {}
