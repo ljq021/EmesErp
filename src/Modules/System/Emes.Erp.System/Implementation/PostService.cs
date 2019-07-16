@@ -7,10 +7,12 @@ using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Posts;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
 {
+    [ModuleName("Post")]
     public class PostService : ProxyServiceBase, IPostService
     {
         private readonly IRepository<Post> _postRepository;

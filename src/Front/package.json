@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run color-less && ng s --port 0 -o",
-    "start:prod": "npm run color-less && ng s --port 0 -o --prod",
-    "hmr": "npm run color-less &&ng s -c=hmr --port 0 -o",
+    "start": "npm run color-less && ng s --port 6630 -o",
+    "start:prod": "npm run color-less && ng s --port 6630 -o --prod",
+    "hmr": "npm run color-less &&ng s -c=hmr --port 6630 -o",
     "build": "npm run color-less && node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod",
     "test": "ng test",
     "lint": "npm run lint:ts && npm run lint:style",

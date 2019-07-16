@@ -8,10 +8,12 @@ using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
 {
+    [ModuleName("Org")]
     public class OrganizationService : ProxyServiceBase, IOrganizationService
     {
         private readonly IRepository<Organization> _orgRepository;

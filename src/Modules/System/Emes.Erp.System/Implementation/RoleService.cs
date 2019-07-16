@@ -7,10 +7,12 @@ using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Roles;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
 {
+    [ModuleName("Role")]
     public class RoleService : ProxyServiceBase, IRoleService
     {
         private readonly IRepository<Role> _roleRepository;

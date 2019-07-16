@@ -5,7 +5,9 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Emes.Gateway.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Surging.Core.ApiGateWay;
 using Surging.Core.ApiGateWay.OAuth;
 using Surging.Core.CPlatform;
@@ -66,8 +68,11 @@ namespace Emes.Gateway.Controllers
                     if (path == GateWayAppConfig.AuthorizationRoutePath)
                     {
                         var token = await _authorizationServerProvider.GenerateTokenCredential(model);
+
                         if (token != null)
                         {
+                            //var payload = _authorizationServerProvider.GetPayloadString(token);
+                            //var user = JsonConvert.DeserializeObject<UserModel>(JsonConvert.DeserializeObject(payload).ToString());
                             result = ServiceResult<object>.Create(true, token);
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }

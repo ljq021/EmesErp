@@ -50,6 +50,6 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<Result<UserDto>> Authentication(AuthUserDto request);
+        Task<UserDto> Authentication(AuthUserDto request);
     }
 }

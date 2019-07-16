@@ -7,10 +7,12 @@ using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Users;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
 {
+    [ModuleName("User")]
     public class UserService : ProxyServiceBase, IUserService
     {
         private readonly IRepository<User> _userRepository;
@@ -20,20 +22,20 @@ namespace Emes.Erp.System.Implementation
             _userRepository = userRepository;
         }
 
-        public Task<Result<UserDto>> Authentication(AuthUserDto request)
+        public Task<UserDto> Authentication(AuthUserDto request)
         {
             if (request.IsValid())
             {
                 var user = _userRepository.Query.FirstOrDefault(x => x.Name == request.UserName && x.Password == request.Password);
                 if (user != null)
                 {
-                    return Result.Ok(user.MapTo<UserDto>());
+                    return Task.FromResult(user.MapTo<UserDto>());
                 }
-                return Result.NotFound<UserDto>();
+                return Task.FromResult<UserDto>(null);
             }
             else
             {
-                return Result.Fail<UserDto>(request.Message());
+                return Task.FromResult<UserDto>(null);
             }
         }
 
