@@ -8,6 +8,7 @@ using Emes.Erp.ISystem.Dtos.Users;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
 using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation

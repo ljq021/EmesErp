@@ -8,3 +8,8 @@ bb4XeBK9LNTPWQL4YwIDAQAB
 -----END PUBLIC KEY-----
 
 fvD4zeQKw67tN/bhxuXOVhHoftG6m6u0lFIsoOGscUiow/oOO6xc1N6VWJmZPKieP+lf10o6M7CrfG9vdAoP5w8pDMeEAxxIWxctucV9LhlIE5+tvI0EwfN125PrUFDqSeVKUobgS1Vps4PRVv/iqhwgEvEMO6tK9Kd+XNBkcXM=
+
+
+# 根据swagger生成service & model
+
+java -jar codegen.jar generate -i http://localhost:280/swagger/Emes.Erp.ISystem/swagger.json -l emes-angular -o ./src/app/routes/system/api --additional-properties ngVersion=8.1.1

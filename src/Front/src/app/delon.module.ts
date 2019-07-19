@@ -30,11 +30,11 @@ const MOCK_MODULES = true ? [DelonMockModule.forRoot({ data: MOCKDATA })] : [];
 import { RouteReuseStrategy } from '@angular/router';
 import { ReuseTabService, ReuseTabStrategy } from '@delon/abc/reuse-tab';
 const REUSETAB_PROVIDES = [
-  // {
-  //   provide: RouteReuseStrategy,
-  //   useClass: ReuseTabStrategy,
-  //   deps: [ReuseTabService],
-  // },
+  {
+    provide: RouteReuseStrategy,
+    useClass: ReuseTabStrategy,
+    deps: [ReuseTabService],
+  },
 ];
 // #endregion
 
@@ -44,7 +44,7 @@ import { PageHeaderConfig } from '@delon/abc';
 export function fnPageHeaderConfig(): PageHeaderConfig {
   return {
     ...new PageHeaderConfig(),
-    homeI18n: 'home',
+    homeI18n: '首页',
   };
 }
 
