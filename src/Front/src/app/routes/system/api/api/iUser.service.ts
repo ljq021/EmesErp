@@ -32,7 +32,9 @@ import { Request16 } from '../model/request16';
  
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IUserService {
 
 

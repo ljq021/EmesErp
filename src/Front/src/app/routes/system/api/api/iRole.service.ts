@@ -30,7 +30,9 @@ import { Request9 } from '../model/request9';
  
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IRoleService {
 
 

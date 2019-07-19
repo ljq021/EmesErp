@@ -30,7 +30,9 @@ import { Request3 } from '../model/request3';
  
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IOrganizationService {
 
 

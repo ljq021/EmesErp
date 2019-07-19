@@ -30,7 +30,9 @@ import { Request7 } from '../model/request7';
  
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IPostService {
 
 
