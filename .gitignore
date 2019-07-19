@@ -12,6 +12,9 @@
 
 # Build results
 
+# dependencies
+**/node_modules/**
+
 .vs/
 [Dd]ebug/
 [Rr]elease/

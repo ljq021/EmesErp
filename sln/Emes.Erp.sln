@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emes.Erp.System", "..\src\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emes.Erp.ISystem", "..\src\Modules\System\Emes.Erp.ISystem\Emes.Erp.ISystem.csproj", "{815ACFEC-8402-4400-9265-9642A9C671FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emes.Gateway", "..\src\Gateway\Emes.Gateway\Emes.Gateway.csproj", "{E5066E3D-5518-40D9-A37F-BEF9923CD793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emes.Gateway", "..\src\Gateway\Emes.Gateway\Emes.Gateway.csproj", "{E5066E3D-5518-40D9-A37F-BEF9923CD793}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
