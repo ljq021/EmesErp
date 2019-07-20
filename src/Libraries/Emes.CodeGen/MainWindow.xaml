@@ -1,0 +1,78 @@
+﻿<Controls:MetroWindow x:Class="Emes.CodeGen.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:Emes.CodeGen="clr-namespace:Emes.CodeGen"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:exampleViews="clr-namespace:Emes.CodeGen.ExampleViews"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      Title="Emes代码生成器"
+                      Width="1024"
+                      Height="768"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      d:DataContext="{d:DesignInstance Emes.CodeGen:CodeGenViewModel}"
+                      d:DesignHeight="668"
+                      d:DesignWidth="1024"
+                      Closing="MetroWindow_Closing"
+                      Icon="mahapps.metro.logo2.ico"
+                      NonActiveGlowBrush="#CDFF0000"
+                      ShowIconOnTitleBar="True"
+                      WindowStartupLocation="CenterScreen"
+                      mc:Ignorable="d">
+    <!--
+        if using DialogParticipation on Windows which open/close frequently you will get a
+        memory leak unless you unregister.  The easiest way to do this is in your Closing/Unloaded
+        event, as so:
+        
+        DialogParticipation.SetRegister(this, null);
+    -->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="模块：" HorizontalAlignment="Left" Margin="24,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="70,8,0,0" Grid.Row="1" Text="{Binding Module}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="实体名称：" HorizontalAlignment="Left" Margin="200,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="270,8,0,0" Grid.Row="1" Text="{Binding Name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="实体Code：" HorizontalAlignment="Left" Margin="400,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="470,8,0,0" Grid.Row="1" Text="{Binding Code}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="描述：" HorizontalAlignment="Left" Margin="24,8,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="70,8,0,0" Grid.Row="2" Text="{Binding Desc}" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
+        <Button Content="增加行" HorizontalAlignment="Left" Margin="438,8,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding AddCommand}"/>
+        <Button Content="生成" HorizontalAlignment="Left" Margin="538,8,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding GenCommand}"/>
+        <DataGrid x:Name="EmesDataGrid" Grid.Row="3" Margin="0,50,0,0" 
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Path=Fields}"
+                  HeadersVisibility="Column"
+                  RowHeaderWidth="200"
+                  SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Header="字段名" MinWidth="200"/>
+                <DataGridTextColumn Binding="{Binding Code}" Header="Code" MinWidth="200" />
+                <DataGridTextColumn Binding="{Binding Desc}" Header="描述" MinWidth="200" />
+                <DataGridComboBoxColumn   Header="数据类型" MinWidth="200" ItemsSource="{Binding Path=DataTypes}" />
+                <DataGridCheckBoxColumn Binding="{Binding Required, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        Header="必填" MinWidth="200"/>
+            </DataGrid.Columns>
+            <DataGrid.Style>
+                <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
+                    <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
+                </Style>
+            </DataGrid.Style>
+        </DataGrid>
+
+    </Grid>
+</Controls:MetroWindow>

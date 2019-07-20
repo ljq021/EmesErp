@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emes.Erp.ISystem", "..\src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emes.Gateway", "..\src\Gateway\Emes.Gateway\Emes.Gateway.csproj", "{E5066E3D-5518-40D9-A37F-BEF9923CD793}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emes.CodeGen", "..\src\Libraries\Emes.CodeGen\Emes.CodeGen.csproj", "{16409EA7-2102-4E8D-9BC2-0E0A706467FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{E5066E3D-5518-40D9-A37F-BEF9923CD793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5066E3D-5518-40D9-A37F-BEF9923CD793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5066E3D-5518-40D9-A37F-BEF9923CD793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16409EA7-2102-4E8D-9BC2-0E0A706467FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16409EA7-2102-4E8D-9BC2-0E0A706467FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16409EA7-2102-4E8D-9BC2-0E0A706467FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16409EA7-2102-4E8D-9BC2-0E0A706467FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{5DA9EC8F-D5AA-4F5A-9180-A943BE311722} = {7AFC6670-6DF3-4E92-B1E0-DF1477794107}
 		{815ACFEC-8402-4400-9265-9642A9C671FA} = {7AFC6670-6DF3-4E92-B1E0-DF1477794107}
 		{E5066E3D-5518-40D9-A37F-BEF9923CD793} = {B6B267C9-F267-4914-965F-C2F18649833D}
+		{16409EA7-2102-4E8D-9BC2-0E0A706467FF} = {B8F2E2BC-C130-4D78-9425-58500EE1504F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AC009A2-D7B6-4F57-9DA1-E5324748928B}
