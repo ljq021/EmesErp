@@ -10,15 +10,15 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview6.19304.6" />
-    <PackageReference Include="Surging.Core.ApiGateWay" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Caching" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Codec.MessagePack" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Common" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Consul" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.CPlatform" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.DotNetty" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Zookeeper" Version="61.1.0" />
+    <PackageReference Include="Surging.Core.ApiGateWay" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.Caching" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.Codec.MessagePack" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.Common" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.Consul" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.CPlatform" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.DotNetty" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.1" />
+    <PackageReference Include="Surging.Core.Zookeeper" Version="61.1.1" />
   </ItemGroup>
 
   <ItemGroup>
