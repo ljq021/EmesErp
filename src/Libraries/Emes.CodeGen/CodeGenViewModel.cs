@@ -234,16 +234,16 @@ namespace Emes.CodeGen
             this.CultureInfos = CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures).OrderBy(c => c.DisplayName).ToList();
 
             this.DefaultPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).FullName, "Modules");
-            #if DEBUG
-            this.Fields.Add(new EmesModalFields()
-            {
-                Name = "姓名",
-                Desc = "用户姓名",
-                Code = "Name",
-                DataType = DataType.String,
-                Required = true
-            });
-            #endif
+            //#if DEBUG
+            //this.Fields.Add(new EmesModalFields()
+            //{
+            //    Name = "姓名",
+            //    Desc = "用户姓名",
+            //    Code = "Name",
+            //    DataType = DataType.String,
+            //    Required = true
+            //});
+            //#endif
             for (int i = 0; i < 10; i++)
             {
                 this.Fields.Add(new EmesModalFields());
@@ -275,6 +275,17 @@ namespace Emes.CodeGen
                 {
                     this.CodeGen();
                 }
+            );
+            this.ResetCommand = new SimpleCommand(
+                o => true,
+                 x =>
+                 {
+                     this.Fields.Clear();
+                     for (int i = 0; i < 10; i++)
+                     {
+                         this.Fields.Add(new EmesModalFields());
+                     }
+                 }
             );
         }
 
@@ -628,6 +639,8 @@ namespace Emes.CodeGen
 
         public ICommand AddCommand { get; }
         public ICommand GenCommand { get; }
+
+        public ICommand ResetCommand { get; }
 
         public ICommand ShowMessageDialogCommand { get; }
 

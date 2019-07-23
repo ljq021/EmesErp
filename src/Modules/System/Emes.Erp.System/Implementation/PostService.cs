@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Emes.Core;
@@ -8,6 +14,7 @@ using Emes.Erp.ISystem.Dtos.Posts;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
 using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.System.Implementation
@@ -21,6 +28,11 @@ namespace Emes.Erp.System.Implementation
         {
             _postRepository = postRepository;
         }
+        /// <summary>
+        /// 创建岗位
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<PostDto>> Create(CreatePostDto request)
         {
             if (request.IsValid())
@@ -35,6 +47,11 @@ namespace Emes.Erp.System.Implementation
             }
         }
 
+        /// <summary>
+        /// 删除岗位
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<PostDto>> Delete(DeletePostDto request)
         {
             if (request.IsValid())
@@ -54,6 +71,11 @@ namespace Emes.Erp.System.Implementation
             }
         }
 
+        /// <summary>
+        /// 根据Id获取岗位
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<PostDto>> GetById(long id)
         {
 
@@ -66,16 +88,24 @@ namespace Emes.Erp.System.Implementation
 
         }
 
+        /// <summary>
+        /// 查询岗位列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<IEnumerable<PostDto>>> Query(QueryPostDto request)
         {
             var query = _postRepository.Query;
-            if (!string.IsNullOrEmpty(request.Name))
-            {
-                query = query.Where(q => q.Name.Contains(request.Name));
-            }
+           
             return Result.Ok(query.MapTo<PostDto>());
+            ;
         }
 
+        /// <summary>
+        /// 更新岗位
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<PostDto>> Update(UpdatePostDto request)
         {
             if (request.IsValid())

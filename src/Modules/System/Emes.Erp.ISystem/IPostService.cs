@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Emes.Core;
 using Emes.Erp.ISystem.Dtos.Posts;
@@ -7,6 +13,9 @@ using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attr
 
 namespace Emes.Erp.ISystem
 {
+    /// <summary>
+    /// 岗位服务接口
+    /// </summary>
     [ServiceBundle("api/{Service}")]
     public interface IPostService : IServiceKey
     {
@@ -43,7 +52,8 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //
         Task<Result<PostDto>> GetById(long id);
+
+
     }
 }

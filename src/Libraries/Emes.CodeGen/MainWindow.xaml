@@ -68,6 +68,7 @@
 
         <TextBox HorizontalAlignment="Left" Height="23" Margin="470,8,0,0" Grid.Row="2" Text="{Binding DefaultPath}" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
         <Button Content="增加行" HorizontalAlignment="Left" Margin="860,8.4,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding AddCommand}"/>
+        <Button Content="重置" HorizontalAlignment="Left" Margin="915,8.4,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding ResetCommand}"/>
         <Button Content="生成" HorizontalAlignment="Left" Margin="960,8.4,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding GenCommand}"/>
         <DataGrid x:Name="EmesDataGrid" Grid.Row="3" Margin="0,50,0,0" 
                   AutoGenerateColumns="False"
