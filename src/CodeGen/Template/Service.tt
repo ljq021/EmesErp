@@ -4,6 +4,12 @@
         DefaultHost host = (DefaultHost)(Host);
         var designer = host.Designer;
 #>
+#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +20,7 @@ using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
 using Emes.Erp.<#=designer.Module#>.Models;
 using Surging.Core.AutoMapper;
 using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
 
 namespace Emes.Erp.<#=designer.Module#>.Implementation
@@ -87,7 +94,8 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
                 var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
                 if (<#=designer.CamelCaseCode#> != null)
                 {
-                    await _<#=designer.CamelCaseCode#>Repository.Update(org);
+                    <#=designer.CamelCaseCode#> = request.MapTo(<#=designer.CamelCaseCode#>);
+                    await _<#=designer.CamelCaseCode#>Repository.Update(<#=designer.CamelCaseCode#>);
                     return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
                 }
                 return await Result.NotFound<<#=designer.Code#>Dto>();
