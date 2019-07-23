@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using Emes.Core.Dtos;
 
 namespace Emes.Erp.ISystem.Dtos.Organizations

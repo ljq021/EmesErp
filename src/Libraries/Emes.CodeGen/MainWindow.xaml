@@ -8,6 +8,7 @@
                       xmlns:exampleViews="clr-namespace:Emes.CodeGen.ExampleViews"
                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:core="clr-namespace:System;assembly=mscorlib"
                       Title="Emes代码生成器"
                       Width="1024"
                       Height="768"
@@ -28,7 +29,13 @@
         
         DialogParticipation.SetRegister(this, null);
     -->
-
+    <Window.Resources>
+        <ObjectDataProvider x:Key="DataTypes" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>               
+                <x:Type Type="Emes.CodeGen:DataType"/>  
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -46,11 +53,22 @@
         <Label Content="实体Code：" HorizontalAlignment="Left" Margin="400,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
         <TextBox HorizontalAlignment="Left" Height="23" Margin="470,8,0,0" Grid.Row="1" Text="{Binding Code}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Code复数：" HorizontalAlignment="Left" Margin="600,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="670,8,0,0" Grid.Row="1" Text="{Binding Codes}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="聚合根：" HorizontalAlignment="Left" Margin="800,8,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <CheckBox  HorizontalAlignment="Left" Height="23" Margin="870,8,0,0" Grid.Row="1" IsChecked="{Binding AggregateRoot}"  VerticalAlignment="Top"></CheckBox>
+
         <Label Content="描述：" HorizontalAlignment="Left" Margin="24,8,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
         <TextBox HorizontalAlignment="Left" Height="23" Margin="70,8,0,0" Grid.Row="2" Text="{Binding Desc}" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
-        <Button Content="增加行" HorizontalAlignment="Left" Margin="438,8,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding AddCommand}"/>
-        <Button Content="生成" HorizontalAlignment="Left" Margin="538,8,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding GenCommand}"/>
+        <Label Content="生成路径：" HorizontalAlignment="Left" Margin="400,8,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="470,8,0,0" Grid.Row="2" Text="{Binding DefaultPath}" TextWrapping="Wrap" VerticalAlignment="Top" Width="320"/>
+        <Button Content="增加行" HorizontalAlignment="Left" Margin="860,8.4,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding AddCommand}"/>
+        <Button Content="生成" HorizontalAlignment="Left" Margin="960,8.4,0,0" Grid.Row="2" VerticalAlignment="Top"  Command="{Binding GenCommand}"/>
         <DataGrid x:Name="EmesDataGrid" Grid.Row="3" Margin="0,50,0,0" 
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Path=Fields}"
@@ -61,11 +79,17 @@
                 <DataGridTextColumn Binding="{Binding Name}" Header="字段名" MinWidth="200"/>
                 <DataGridTextColumn Binding="{Binding Code}" Header="Code" MinWidth="200" />
                 <DataGridTextColumn Binding="{Binding Desc}" Header="描述" MinWidth="200" />
-                <DataGridComboBoxColumn   Header="数据类型" MinWidth="200" ItemsSource="{Binding Path=DataTypes}" />
+                <DataGridComboBoxColumn   Header="数据类型" MinWidth="200" 
+                              ItemsSource="{Binding Source={StaticResource DataTypes}}"
+                              SelectedValueBinding="{Binding DataType}"/>
                 <DataGridCheckBoxColumn Binding="{Binding Required, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                                        Header="必填" MinWidth="200"/>
+                                        Header="必填" MinWidth="100"/>
+                <DataGridCheckBoxColumn Binding="{Binding IsDto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        Header="Dto字段" MinWidth="100"/>
             </DataGrid.Columns>
             <DataGrid.Style>
                 <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">

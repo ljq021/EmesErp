@@ -4,8 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Emes.Erp.System.Models
 {
+
     public class Organization : EntityBase, IAggregateRoot
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Required(ErrorMessage = "父级部门是必填项")]
         public long ParentId { get; set; }
 

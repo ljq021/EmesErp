@@ -1,5 +1,108 @@
-﻿<#@ template language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
+﻿<#@ template language="C#" hostSpecific="true" debug="false" #>
+<#@ output extension=".cs" #>
+<#
+        DefaultHost host = (DefaultHost)(Host);
+        var designer = host.Designer;
+#>
+#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Emes.Core;
+using Emes.Core.Data;
+using Emes.Erp.I<#=designer.Module#>;
+using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
+using Emes.Erp.<#=designer.Module#>.Models;
+using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Ioc;
+using Surging.Core.ProxyGenerator;
+
+namespace Emes.Erp.<#=designer.Module#>.Implementation
+{
+    [ModuleName("<#=designer.Code#>")]
+    public class <#=designer.Code#>Service : ProxyServiceBase, I<#=designer.Code#>Service
+    {
+        private readonly IRepository<<#=designer.Code#>> _<#=designer.CamelCaseCode#>Repository;
+        public <#=designer.Code#>Service(IRepository<<#=designer.Code#>> <#=designer.CamelCaseCode#>Repository
+            )
+        {
+            _<#=designer.CamelCaseCode#>Repository = <#=designer.CamelCaseCode#>Repository;
+        }
+        public Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request)
+        {
+            if (request.IsValid())
+            {
+                var <#=designer.CamelCaseCode#> = request.MapTo<<#=designer.Code#>>();
+                _<#=designer.CamelCaseCode#>Repository.Add(<#=designer.CamelCaseCode#>);
+                return Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+            }
+            else
+            {
+                return Result.Fail<<#=designer.Code#>Dto>(request.Message());
+            }
+        }
+
+        public async Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request)
+        {
+            if (request.IsValid())
+            {
+                var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
+                if (<#=designer.CamelCaseCode#> != null)
+                {
+                    await _<#=designer.CamelCaseCode#>Repository.Remove(<#=designer.CamelCaseCode#>);
+                    return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+                }
+                return await Result.NotFound<<#=designer.Code#>Dto>();
+
+            }
+            else
+            {
+                return await Result.Fail<<#=designer.Code#>Dto>(request.Message());
+            }
+        }
+
+        public async Task<Result<<#=designer.Code#>Dto>> GetById(long id)
+        {
+
+            var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(id);
+            if (<#=designer.CamelCaseCode#> != null)
+            {
+                return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+            }
+            return await Result.NotFound<<#=designer.Code#>Dto>();
+
+        }
+
+        public Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request)
+        {
+            var query = _<#=designer.CamelCaseCode#>Repository.Query;
+           
+            return Result.Ok(query.MapTo<<#=designer.Code#>Dto>());
+            ;
+        }
+
+        public async Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request)
+        {
+            if (request.IsValid())
+            {
+                var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
+                if (<#=designer.CamelCaseCode#> != null)
+                {
+                    await _<#=designer.CamelCaseCode#>Repository.Update(org);
+                    return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+                }
+                return await Result.NotFound<<#=designer.Code#>Dto>();
+
+            }
+            else
+            {
+                return await Result.Fail<<#=designer.Code#>Dto>(request.Message());
+            }
+        }
+    }
+}

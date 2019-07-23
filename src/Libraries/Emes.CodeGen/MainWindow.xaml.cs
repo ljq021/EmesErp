@@ -31,7 +31,7 @@ namespace Emes.CodeGen
         {
             _viewModel = new CodeGenViewModel(DialogCoordinator.Instance);
             DataContext = _viewModel;
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             InitializeComponent();
 
             flyoutDemo = new FlyoutDemo();

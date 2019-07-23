@@ -1,0 +1,57 @@
+﻿<#@ template language="C#" hostSpecific="true" debug="false" #>
+<#@ output extension=".cs" #>
+<#
+        DefaultHost host = (DefaultHost)(Host);
+        var designer = host.Designer;
+#>
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Emes.Core;
+using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
+using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
+
+namespace Emes.Erp.I<#=designer.Module#>
+{
+    [ServiceBundle("api/{Service}")]
+    public interface I<#=designer.Code#>Service : IServiceKey
+    {
+        /// <summary>
+        /// 创建<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 更新<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 删除<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 查询<#=designer.Name#>列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 根据Id获取<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        //
+        Task<Result<<#=designer.Code#>Dto>> GetById(long id);
+
+
+    }
+}
