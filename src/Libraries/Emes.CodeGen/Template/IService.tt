@@ -55,7 +55,6 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //
         Task<Result<<#=designer.Code#>Dto>> GetById(long id);
 
 

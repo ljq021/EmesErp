@@ -17,7 +17,7 @@ namespace Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>
 {
     /// <summary>
     /// 更新<#=designer.Name#>Dto
-    /// 更新<#=designer.Desc#>Dto
+    /// Desc:更新<#=designer.Desc#>Dto
     /// </summary>
     public class Update<#=designer.Code#>Dto: DtoWithIdBase
     {

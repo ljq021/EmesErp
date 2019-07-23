@@ -10,7 +10,7 @@
 //        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
 //======================================================================
 #endregion
-using Emes.Core;
+using System;
 using Emes.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,14 +18,14 @@ namespace Emes.Erp.<#=designer.Module#>.Models
 {
     /// <summary>
     /// <#=designer.Name#>
-    /// <#=designer.Desc#>
+    /// Desc:<#=designer.Desc#>
     /// </summary>
     public class <#=designer.Code#>: EntityBase<#= designer.AggregateRoot ?", IAggregateRoot":""#>
     {
          <# foreach (var f in designer.Fields)
   { #>/// <summary>
         /// <#= f.Name #>
-        /// <#= f.Desc #>
+        /// Desc:<#= f.Desc #>
         /// </summary>
         <#= f.Required ?"[Required(ErrorMessage = \""+f.Name+"是必填项\")]":""#>
         public <#= f.DataTypeValue#> <#= f.Code #> { get; set; }
