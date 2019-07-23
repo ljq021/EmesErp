@@ -124,8 +124,9 @@ namespace Emes.CodeGen
 
         public string CamelCaseCode
         {
-            get {
-              return  string.Concat(Code.Substring(0, 1).ToLower(), Code.Substring(1));
+            get
+            {
+                return string.Concat(Code.Substring(0, 1).ToLower(), Code.Substring(1));
             }
         }
         /// <summary>
@@ -233,6 +234,7 @@ namespace Emes.CodeGen
             this.CultureInfos = CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures).OrderBy(c => c.DisplayName).ToList();
 
             this.DefaultPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).FullName, "Modules");
+            #if DEBUG
             this.Fields.Add(new EmesModalFields()
             {
                 Name = "姓名",
@@ -241,6 +243,7 @@ namespace Emes.CodeGen
                 DataType = DataType.String,
                 Required = true
             });
+            #endif
             for (int i = 0; i < 10; i++)
             {
                 this.Fields.Add(new EmesModalFields());
@@ -342,7 +345,7 @@ namespace Emes.CodeGen
                 //IService
                 GenISrv(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\IService.tt"));
             }
-           
+
         }
 
         private void GenDto(EmesModalDesigner ds, Engine engine, List<string> tempPath)
