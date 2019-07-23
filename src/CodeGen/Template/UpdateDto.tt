@@ -10,6 +10,7 @@
 //        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
 //======================================================================
 #endregion
+using System;
 using System.ComponentModel.DataAnnotations;
 using Emes.Core.Dtos;
 
@@ -17,7 +18,7 @@ namespace Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>
 {
     /// <summary>
     /// 更新<#=designer.Name#>Dto
-    /// 更新<#=designer.Desc#>Dto
+    /// Desc:更新<#=designer.Desc#>Dto
     /// </summary>
     public class Update<#=designer.Code#>Dto: DtoWithIdBase
     {

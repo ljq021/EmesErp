@@ -34,6 +34,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         {
             _<#=designer.CamelCaseCode#>Repository = <#=designer.CamelCaseCode#>Repository;
         }
+        /// <summary>
+        /// 创建<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request)
         {
             if (request.IsValid())
@@ -48,6 +53,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
             }
         }
 
+        /// <summary>
+        /// 删除<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request)
         {
             if (request.IsValid())
@@ -67,6 +77,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
             }
         }
 
+        /// <summary>
+        /// 根据Id获取<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<<#=designer.Code#>Dto>> GetById(long id)
         {
 
@@ -79,6 +94,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
 
         }
 
+        /// <summary>
+        /// 查询<#=designer.Name#>列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request)
         {
             var query = _<#=designer.CamelCaseCode#>Repository.Query;
@@ -87,6 +107,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
             ;
         }
 
+        /// <summary>
+        /// 更新<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request)
         {
             if (request.IsValid())

@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Emes.Core;
@@ -22,24 +28,11 @@ namespace Emes.Erp.System.Implementation
         {
             _userRepository = userRepository;
         }
-
-        public Task<UserDto> Authentication(AuthUserDto request)
-        {
-            if (request.IsValid())
-            {
-                var user = _userRepository.Query.FirstOrDefault(x => x.Name == request.UserName && x.Password == request.Password);
-                if (user != null)
-                {
-                    return Task.FromResult(user.MapTo<UserDto>());
-                }
-                return Task.FromResult<UserDto>(null);
-            }
-            else
-            {
-                return Task.FromResult<UserDto>(null);
-            }
-        }
-
+        /// <summary>
+        /// 创建用户领域模型
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<UserDto>> Create(CreateUserDto request)
         {
             if (request.IsValid())
@@ -54,6 +47,11 @@ namespace Emes.Erp.System.Implementation
             }
         }
 
+        /// <summary>
+        /// 删除用户领域模型
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<UserDto>> Delete(DeleteUserDto request)
         {
             if (request.IsValid())
@@ -73,6 +71,11 @@ namespace Emes.Erp.System.Implementation
             }
         }
 
+        /// <summary>
+        /// 根据Id获取用户领域模型
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<UserDto>> GetById(long id)
         {
 
@@ -85,16 +88,24 @@ namespace Emes.Erp.System.Implementation
 
         }
 
+        /// <summary>
+        /// 查询用户领域模型列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public Task<Result<IEnumerable<UserDto>>> Query(QueryUserDto request)
         {
             var query = _userRepository.Query;
-            if (!string.IsNullOrEmpty(request.Name))
-            {
-                query = query.Where(q => q.Name.Contains(request.Name));
-            }
+           
             return Result.Ok(query.MapTo<UserDto>());
+            ;
         }
 
+        /// <summary>
+        /// 更新用户领域模型
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<Result<UserDto>> Update(UpdateUserDto request)
         {
             if (request.IsValid())
@@ -112,6 +123,27 @@ namespace Emes.Erp.System.Implementation
             else
             {
                 return await Result.Fail<UserDto>(request.Message());
+            }
+        }
+        /// <summary>
+        /// 认证用户
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Task<UserDto> Authentication(AuthUserDto request)
+        {
+            if (request.IsValid())
+            {
+                var user = _userRepository.Query.FirstOrDefault(x => x.Name == request.UserName && x.Password == request.Password);
+                if (user != null)
+                {
+                    return Task.FromResult(user.MapTo<UserDto>());
+                }
+                return Task.FromResult<UserDto>(null);
+            }
+            else
+            {
+                return Task.FromResult<UserDto>(null);
             }
         }
     }

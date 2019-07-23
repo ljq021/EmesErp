@@ -18,14 +18,14 @@ namespace Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>
 {
     /// <summary>
     /// 创建<#=designer.Name#>Dto
-    /// 创建<#=designer.Desc#>Dto
+    /// Desc:创建<#=designer.Desc#>Dto
     /// </summary>
     public class Create<#=designer.Code#>Dto: DtoBase
     {
          <# foreach (var f in designer.DtoFields)
   { #>/// <summary>
         /// <#= f.Name #>
-        /// <#= f.Desc #>
+        /// Desc:<#= f.Desc #>
         /// </summary>
         <#= f.Required ?"[Required(ErrorMessage = \""+f.Name+"是必填项\")]":""#>
         public <#= f.DataTypeValue#> <#= f.Code #> { get; set; }

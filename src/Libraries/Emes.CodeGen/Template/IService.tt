@@ -19,6 +19,9 @@ using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attr
 
 namespace Emes.Erp.I<#=designer.Module#>
 {
+    /// <summary>
+    /// <#=designer.Name#>服务接口
+    /// </summary>
     [ServiceBundle("api/{Service}")]
     public interface I<#=designer.Code#>Service : IServiceKey
     {

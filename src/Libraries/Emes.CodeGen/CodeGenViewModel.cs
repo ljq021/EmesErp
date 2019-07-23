@@ -330,17 +330,19 @@ namespace Emes.CodeGen
                 "Template\\UpdateDto.tt",
             };
             GenDto(ds, engine, dtoPaths);
-            //IService
-            GenISrv(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\IService.tt"));
+
             //Model
             GenModel(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\Model.tt"));
-            //Service
-            GenSrv(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\Service.tt"));
-
             //Profile
             GenProfile(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\Profile.tt"));
-
-
+            if (this.AggregateRoot)
+            {
+                //Service
+                GenSrv(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\Service.tt"));
+                //IService
+                GenISrv(ds, engine, Path.Combine(Environment.CurrentDirectory, "Template\\IService.tt"));
+            }
+           
         }
 
         private void GenDto(EmesModalDesigner ds, Engine engine, List<string> tempPath)
