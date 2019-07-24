@@ -10,14 +10,41 @@
  */
 
 
+/**
+ * 更新岗位Dto  Desc:更新岗位领域模型Dto
+ */
 export interface UpdatePostDto { 
-    orgId?: number;
-    no?: string;
-    name?: string;
+    /**
+     * 部门id  部门id
+     */
+    orgId: number;
+    /**
+     * 岗位编号  岗位编号
+     */
+    no: string;
+    /**
+     * 岗位名称  岗位名称
+     */
+    name: string;
+    /**
+     * 助记码  助记码
+     */
     mnemonicCode?: string;
+    /**
+     * 关键岗位  是否关键岗位
+     */
     isKey?: boolean;
-    type?: number;
+    /**
+     * 所属类型  所属类型
+     */
+    type: number;
+    /**
+     * 岗位职责  岗位职责
+     */
     responsibility?: string;
+    /**
+     * 岗位描述  岗位描述
+     */
     desc?: string;
     id?: number;
 }

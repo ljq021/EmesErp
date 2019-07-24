@@ -10,6 +10,9 @@
  */
 
 
+/**
+ * 删除岗位Dto  删除岗位领域模型Dto
+ */
 export interface DeletePostDto { 
     id?: number;
 }

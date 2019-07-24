@@ -10,6 +10,9 @@
  */
 
 
+/**
+ * 删除组织机构Dto  删除组织机构领域模型Dto
+ */
 export interface DeleteOrganizationDto { 
     id?: number;
 }

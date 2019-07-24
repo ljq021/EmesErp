@@ -10,6 +10,8 @@
  */
 
 
+/**
+ * 查询组织机构Dto  Desc:查询组织机构领域模型Dto
+ */
 export interface QueryOrganizationDto { 
-    name?: string;
 }

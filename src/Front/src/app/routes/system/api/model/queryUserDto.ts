@@ -10,6 +10,8 @@
  */
 
 
+/**
+ * 查询用户领域模型Dto  Desc:查询用户Dto
+ */
 export interface QueryUserDto { 
-    name?: string;
 }

@@ -10,7 +10,20 @@
  */
 
 
+/**
+ * 创建角色Dto  Desc:创建角色领域模型Dto
+ */
 export interface CreateRoleDto { 
-    name?: string;
+    /**
+     * 名称  Desc:名称
+     */
+    name: string;
+    /**
+     * 备注  Desc:岗位编备注号
+     */
     notes?: string;
+    /**
+     * 是否系统角色  Desc:是否系统角色
+     */
+    isSystemRole: boolean;
 }

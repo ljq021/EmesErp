@@ -10,6 +10,8 @@
  */
 
 
+/**
+ * 查询岗位Dto  Desc:查询岗位领域模型Dto
+ */
 export interface QueryPostDto { 
-    name?: string;
 }

@@ -73,7 +73,7 @@ export class IUserService {
     }
 
     /**
-     * 创建用户
+     * 创建用户领域模型
      * 
      * @param request 
 * @param servicekey 
@@ -103,7 +103,7 @@ export class IUserService {
     }
 
     /**
-     * 删除用户
+     * 删除用户领域模型
      * 
      * @param request 
 * @param servicekey 
@@ -133,7 +133,7 @@ export class IUserService {
     }
 
     /**
-     * 根据Id获取用户
+     * 根据Id获取用户领域模型
      * 
      * @param id 
 * @param servicekey 
@@ -165,7 +165,7 @@ export class IUserService {
     }
 
     /**
-     * 查询用户列表
+     * 查询用户领域模型列表
      * 
      * @param request 
 * @param servicekey 
@@ -195,7 +195,7 @@ export class IUserService {
     }
 
     /**
-     * 更新用户
+     * 更新用户领域模型
      * 
      * @param request 
 * @param servicekey 

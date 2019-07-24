@@ -10,8 +10,20 @@
  */
 
 
+/**
+ * 角色详情Dto  Desc:角色领域模型详情Dto
+ */
 export interface RoleDto { 
-    name?: string;
+    /**
+     * 名称  Desc:名称
+     */
+    name: string;
+    /**
+     * 备注  Desc:岗位编备注号
+     */
     notes?: string;
-    id?: number;
+    /**
+     * 是否系统角色  Desc:是否系统角色
+     */
+    isSystemRole: boolean;
 }

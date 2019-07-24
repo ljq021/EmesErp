@@ -10,8 +10,21 @@
  */
 
 
+/**
+ * 更新角色Dto  Desc:更新角色领域模型Dto
+ */
 export interface UpdateRoleDto { 
-    name?: string;
+    /**
+     * 名称  名称
+     */
+    name: string;
+    /**
+     * 备注  岗位编备注号
+     */
     notes?: string;
+    /**
+     * 是否系统角色  是否系统角色
+     */
+    isSystemRole: boolean;
     id?: number;
 }

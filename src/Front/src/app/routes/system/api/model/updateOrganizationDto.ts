@@ -10,12 +10,33 @@
  */
 
 
+/**
+ * 更新组织机构Dto  Desc:更新组织机构领域模型Dto
+ */
 export interface UpdateOrganizationDto { 
-    parentId?: number;
-    no?: string;
-    name?: string;
+    /**
+     * 上级机构  上级机构
+     */
+    parentId: number;
+    /**
+     * 机构编号  机构编号
+     */
+    no: string;
+    /**
+     * 机构名称  机构名称
+     */
+    name: string;
+    /**
+     * 助记码  助记码
+     */
     mnemonicCode?: string;
+    /**
+     * 是否分公司  是否分公司
+     */
     isFiliale?: boolean;
+    /**
+     * 是否分店  是否分店
+     */
     isSubbranch?: boolean;
     id?: number;
 }

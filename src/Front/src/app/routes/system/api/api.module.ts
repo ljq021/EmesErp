@@ -9,7 +9,6 @@
  * Do not edit the class manually.
  */
 import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
-import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { IOrganizationService } from './api/iOrganization.service';

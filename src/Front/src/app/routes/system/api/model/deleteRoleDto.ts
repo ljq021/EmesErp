@@ -10,6 +10,9 @@
  */
 
 
+/**
+ * 删除角色Dto  删除角色领域模型Dto
+ */
 export interface DeleteRoleDto { 
     id?: number;
 }

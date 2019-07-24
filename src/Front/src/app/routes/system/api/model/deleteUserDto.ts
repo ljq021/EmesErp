@@ -10,6 +10,9 @@
  */
 
 
+/**
+ * 删除用户领域模型Dto  删除用户Dto
+ */
 export interface DeleteUserDto { 
     id?: number;
 }

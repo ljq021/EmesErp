@@ -10,12 +10,32 @@
  */
 
 
+/**
+ * 组织机构详情Dto  Desc:组织机构领域模型详情Dto
+ */
 export interface OrganizationDto { 
-    parentId?: number;
-    no?: string;
-    name?: string;
+    /**
+     * 上级机构  Desc:上级机构
+     */
+    parentId: number;
+    /**
+     * 机构编号  Desc:机构编号
+     */
+    no: string;
+    /**
+     * 机构名称  Desc:机构名称
+     */
+    name: string;
+    /**
+     * 助记码  Desc:助记码
+     */
     mnemonicCode?: string;
+    /**
+     * 是否分公司  Desc:是否分公司
+     */
     isFiliale?: boolean;
+    /**
+     * 是否分店  Desc:是否分店
+     */
     isSubbranch?: boolean;
-    id?: number;
 }
