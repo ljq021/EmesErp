@@ -9,9 +9,9 @@
     "WanIp": "${WanIp}|192.168.249.103",
     "Libuv": true,
     "SoBacklog": 100,
-    "MaxConcurrentRequests": 20,
+    "MaxConcurrentRequests": 10000,
     "DisconnTimeInterval": 30,
-    "ExecutionTimeoutInMilliseconds": 1000,
+    "ExecutionTimeoutInMilliseconds": 30000,
     "Protocol": "${Protocol}|None", //Http、Tcp、None
     "RootPath": "${RootPath}|D:\\userapp",
     "WebRootPath": "${WebRootPath}|D:\\UserApp\\wwwroot",
