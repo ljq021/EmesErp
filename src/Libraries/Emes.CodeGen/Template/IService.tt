@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Emes.Core;
 using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
+using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 
@@ -30,6 +31,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request);
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request);
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request);
 
         /// <summary>
@@ -51,13 +55,15 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request);
 
         /// <summary>
         /// 根据Id获取<#=designer.Name#>
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<<#=designer.Code#>Dto>> GetById(long id);
 
 

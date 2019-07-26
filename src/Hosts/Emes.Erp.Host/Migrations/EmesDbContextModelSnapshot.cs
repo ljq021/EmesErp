@@ -33,9 +33,11 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<string>("MnemonicCode");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("No");
+                    b.Property<string>("No")
+                        .IsRequired();
 
                     b.Property<long>("ParentId");
 
@@ -66,9 +68,11 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<string>("MnemonicCode");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("No");
+                    b.Property<string>("No")
+                        .IsRequired();
 
                     b.Property<long>("OrgId");
 
@@ -99,7 +103,8 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<bool>("IsSystemRole");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Notes");
 
@@ -132,13 +137,16 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<bool>("IsSystemAccount");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Notes");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
-                    b.Property<string>("SystemName");
+                    b.Property<string>("SystemName")
+                        .IsRequired();
 
                     b.Property<long>("TenantId");
 

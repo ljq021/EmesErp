@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Emes.Core;
 using Emes.Erp.ISystem.Dtos.Organizations;
+using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 
@@ -24,6 +25,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<OrganizationDto>> Create(CreateOrganizationDto request);
 
         /// <summary>
@@ -31,6 +33,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<OrganizationDto>> Update(UpdateOrganizationDto request);
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<OrganizationDto>> Delete(DeleteOrganizationDto request);
 
         /// <summary>
@@ -45,6 +49,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<IEnumerable<OrganizationDto>>> Query(QueryOrganizationDto request);
 
         /// <summary>
@@ -52,6 +57,7 @@ namespace Emes.Erp.ISystem
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
         Task<Result<OrganizationDto>> GetById(long id);
 
 

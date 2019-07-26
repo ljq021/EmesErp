@@ -150,13 +150,13 @@
           <g2-mini-area *ngIf="data.visitData2" [line]="true" height="45" [data]="data.visitData2"></g2-mini-area>
         </div>
       </div>
-      <st [data]="data.searchData" [columns]="searchColumn" size="small" ps="5" [page]="{ toTopInChange: false }">
+      <!-- <st [data]="data.searchData" [columns]="searchColumn" size="small" ps="5" [page]="{ toTopInChange: false }">
         <ng-template st-row="range" let-i>
           <trend [flag]="i.status === 1 ? 'down' : 'up'">
             <span>{{ i.range }}%</span>
           </trend>
         </ng-template>
-      </st>
+      </st> -->
     </nz-card>
   </div>
   <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12">

@@ -40,13 +40,13 @@ namespace Emes.Erp.Host
         /// <param name="services"></param>
         private void ConfigureLogging(IServiceCollection services)
         {
-            services.AddLogging();
+            //services.AddLogging();
         }
 
         private static void ConfigureEventBus(IConfigurationBuilder build)
         {
-            build
-            .AddEventBusFile("Configs/eventBusSettings.json", optional: false);
+            //build
+            //.AddEventBusFile("Configs/eventBusSettings.json", optional: false);
         }
 
         private static void ConfigureSql(IServiceCollection services)
