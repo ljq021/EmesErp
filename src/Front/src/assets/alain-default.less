@@ -2658,9 +2658,25 @@ darker  @grey-9;
 @alain-default-aside-collapsed-nav-fs: 18px;
 @alain-default-aside-collapsed-wd: 50px;
 @alain-default-content-padding: 8px;
-@reuse-tab-padding: 0 8px 8px 8px;
-@reuse-tab-bg: #E8EAED;
+@reuse-tab-padding: 2px 8px 8px 8px;
+@reuse-tab-bg: #F4F6F8;
+@reuse-tab-height: 46px;
 @scrollbar-table-enabled: true;
+.sidebar-nav__selected {
+  background-color: initial;
+
+  >.sidebar-nav__item-link {
+    background-color: @alain-default-aside-nav-selected-bg;
+  }
+}
+
+.alain-default__collapsed .alain-default__aside sidebar-nav .sidebar-nav__item-link {
+  padding: 12px 0;
+}
+
+.alain-default__fixed .reuse-tab .ant-tabs-bar {
+  margin-bottom: 0px;
+}
 
 :host ::ng-deep .alain-default__nav-item,
 :host ::ng-deep .alain-default__nav nz-badge {
@@ -11075,7 +11091,7 @@ textarea.ant-input::-webkit-scrollbar-thumb {
   background: #fafafa;
 }
 .reuse-tab {
-  background-color: #E8EAED;
+  background-color: #F4F6F8;
 }
 .reuse-tab__line {
   border-bottom: 1px solid #d9d9d9;
@@ -11316,6 +11332,21 @@ body {
 }
 .alain-fullscreen {
   background-color: #f5f7fa;
+}
+.sidebar-nav__selected {
+  background-color: initial;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link {
+  background-color: @primary-color;
+}
+
+
+
+.sidebar-nav__selected {
+  background-color: initial;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link {
+  background-color: @primary-color;
 }
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -25030,7 +25061,7 @@ textarea.ant-input::-webkit-scrollbar-thumb {
   background: #fafafa;
 }
 .reuse-tab {
-  background-color: #E8EAED;
+  background-color: #F4F6F8;
 }
 .reuse-tab__line {
   border-bottom: 1px solid #d9d9d9;
@@ -25271,5 +25302,17 @@ body {
 }
 .alain-fullscreen {
   background-color: #f5f7fa;
+}
+.sidebar-nav__selected {
+  background-color: initial;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link {
+  background-color: @primary-color;
+}
+.sidebar-nav__selected {
+  background-color: initial;
+}
+.sidebar-nav__selected > .sidebar-nav__item-link {
+  background-color: @primary-color;
 }
 

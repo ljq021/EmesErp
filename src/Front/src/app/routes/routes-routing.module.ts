@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [ACLGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', reuse: true } },
+      { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', reuse: true, reuseHidden: true } },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
       // 业务子模块
       { path: 'cost', loadChildren: () => import('./cost/cost.module').then(m => m.CostModule) },
