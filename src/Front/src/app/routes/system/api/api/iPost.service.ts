@@ -45,27 +45,33 @@ export class IPostService {
      * 
      * @param request 
 * @param servicekey 
+* @param authorization 
      */
-    public create(request: Request4, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public create(request: Request4, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public create(request: Request4, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
-    public create(request: Request4, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling create.');
         }
 
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+
+        const queryParameters:any = {};
+  
         if (servicekey !== undefined && servicekey !== null) {
-            queryParameters = queryParameters.set('servicekey', <any>servicekey);
+            queryParameters.servicekey = servicekey;
         }
 
 
         return this.http.post<HttpResultMessageResultPostDto>(`/api/post/create`,
             request,
+            
+                 queryParameters,
+    
             {
-                params: queryParameters,
-                observe: observe,
+               
+                observe,
             }
         );
     }
@@ -75,27 +81,33 @@ export class IPostService {
      * 
      * @param request 
 * @param servicekey 
+* @param authorization 
      */
-    public delete(request: Request5, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public delete(request: Request5, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public delete(request: Request5, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
-    public delete(request: Request5, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling delete.');
         }
 
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+
+        const queryParameters:any = {};
+  
         if (servicekey !== undefined && servicekey !== null) {
-            queryParameters = queryParameters.set('servicekey', <any>servicekey);
+            queryParameters.servicekey = servicekey;
         }
 
 
         return this.http.post<HttpResultMessageResultPostDto>(`/api/post/delete`,
             request,
+            
+                 queryParameters,
+    
             {
-                params: queryParameters,
-                observe: observe,
+               
+                observe,
             }
         );
     }
@@ -105,29 +117,35 @@ export class IPostService {
      * 
      * @param id 
 * @param servicekey 
+* @param authorization 
      */
-    public getbyid(id: number, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public getbyid(id: number, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public getbyid(id: number, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
-    public getbyid(id: number, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
+    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
+    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public getbyid(id: number, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getbyid.');
         }
 
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+
+        const queryParameters:any = {};
+  
         if (servicekey !== undefined && servicekey !== null) {
-            queryParameters = queryParameters.set('servicekey', <any>servicekey);
+            queryParameters.servicekey = servicekey;
         }
         if (id !== undefined && id !== null) {
-            queryParameters = queryParameters.set('id', <any>id);
+            queryParameters.id = id;
         }
 
 
         return this.http.get<HttpResultMessageResultPostDto>(`/api/post/getbyid`,
+            
+                 queryParameters,
+    
             {
-                params: queryParameters,
-                observe: observe,
+               
+                observe,
             }
         );
     }
@@ -137,27 +155,33 @@ export class IPostService {
      * 
      * @param request 
 * @param servicekey 
+* @param authorization 
      */
-    public query(request: Request6, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerablePostDto>;
-    public query(request: Request6, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerablePostDto>>;
-    public query(request: Request6, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerablePostDto>>;
-    public query(request: Request6, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerablePostDto>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerablePostDto>>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerablePostDto>>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling query.');
         }
 
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+
+        const queryParameters:any = {};
+  
         if (servicekey !== undefined && servicekey !== null) {
-            queryParameters = queryParameters.set('servicekey', <any>servicekey);
+            queryParameters.servicekey = servicekey;
         }
 
 
         return this.http.post<HttpResultMessageResultIEnumerablePostDto>(`/api/post/query`,
             request,
+            
+                 queryParameters,
+    
             {
-                params: queryParameters,
-                observe: observe,
+               
+                observe,
             }
         );
     }
@@ -167,27 +191,33 @@ export class IPostService {
      * 
      * @param request 
 * @param servicekey 
+* @param authorization 
      */
-    public update(request: Request7, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public update(request: Request7, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public update(request: Request7, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
-    public update(request: Request7, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling update.');
         }
 
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+
+        const queryParameters:any = {};
+  
         if (servicekey !== undefined && servicekey !== null) {
-            queryParameters = queryParameters.set('servicekey', <any>servicekey);
+            queryParameters.servicekey = servicekey;
         }
 
 
         return this.http.post<HttpResultMessageResultPostDto>(`/api/post/update`,
             request,
+            
+                 queryParameters,
+    
             {
-                params: queryParameters,
-                observe: observe,
+               
+                observe,
             }
         );
     }

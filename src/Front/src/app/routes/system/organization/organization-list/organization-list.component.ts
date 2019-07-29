@@ -2,6 +2,8 @@ import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
 import { BaseComponent } from '@layout/base.component';
 import { Router } from '@angular/router';
+import { IOrganizationService } from '../../api';
+import { NotificationService } from '@core';
 
 @Component({
   selector: 'emes-organization-list',
@@ -71,7 +73,7 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
       isLeaf: true,
     },
   ];
-  org: any = {
+  initialOrg = {
     ParentId: 0,
     No: '',
     Name: '',
@@ -79,16 +81,44 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
     IsFiliale: false,
     IsSubbranch: false,
   };
-  constructor(injector: Injector) {
+  org;
+  constructor(injector: Injector, private notifySrv: NotificationService, private orgSrv: IOrganizationService) {
     super(injector);
   }
   ngOnInit() {
+    this.org = this.initialOrg;
   }
   reset() {
     this.f.reset();
   }
   treeClick($event) {}
 
-  add($event) {}
-  delete($event) {}
+  add() {
+    this.org = this.initialOrg;
+  }
+  edit($event) {
+    this.org = $event;
+  }
+  save($event) {
+    if (this.org.Id === undefined) {
+      this.orgSrv.create({ request: this.org }).subscribe(x => {
+        if (x.isSucceed) {
+          this.reset();
+        }
+      });
+    } else {
+      this.orgSrv.update(this.org).subscribe(x => {
+        if (x.isSucceed) {
+          this.reset();
+        }
+      });
+    }
+  }
+  delete($event) {
+    if (this.org.Id !== undefined) {
+      this.orgSrv.delete({ request: { id: this.org.Id } }).subscribe(x => {});
+    } else {
+      // this.edit();
+    }
+  }
 }
