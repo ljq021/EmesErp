@@ -11,8 +11,8 @@ fvD4zeQKw67tN/bhxuXOVhHoftG6m6u0lFIsoOGscUiow/oOO6xc1N6VWJmZPKieP+lf10o6M7CrfG9v
 
 
 # 根据swagger生成service & model
-
-java -jar codegen.jar generate -i http://localhost:280/swagger/Emes.Erp.ISystem/swagger.json -l emes-angular -o ./src/app/routes/system/api --additional-properties providedInRoot=true --additional-properties modelPropertyNaming=PascalCase --additional-properties ngVersion=8.1.1 
+##命名格式 --additional-properties modelPropertyNaming=PascalCase 
+java -jar codegen.jar generate -i http://localhost:280/swagger/Emes.Erp.ISystem/swagger.json -l emes-angular -o ./src/app/routes/system/api --additional-properties providedInRoot=true --additional-properties ngVersion=8.1.1 
 
 #ec模式
 java -jar codegen.jar generate -i http://localhost:280/swagger/Emes.Erp.ISystem.ec/swagger.json -l emes-angular -o ./src/app/routes/system/api --additional-properties providedInRoot=true  --additional-properties ngVersion=8.1.1 

@@ -115,15 +115,15 @@ export class UserLoginComponent implements OnDestroy {
         },
       })
       .subscribe((res: any) => {
-        if (!res.IsSucceed) {
-          this.error = res.Message;
-          return;
-        }
+        // if (!res.isSucceed) {
+        //   this.error = res.message;
+        //   return;
+        // }
         // 清空路由复用信息
         this.reuseTabService.clear();
         // 设置用户Token信息
         const token = {
-          token: res.Entity,
+          token: res,
         };
         this.tokenService.set(token);
         const user = this.settingsService.user;

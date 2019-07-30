@@ -126,4 +126,180 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
       // this.edit();
     }
   }
+  upperJSONKey(jsonObj) {
+    const result = {};
+    // for (let key in jsonObj) {
+    //   let keyval = jsonObj[key];
+    //   if (typeof jsonObj[key] === 'object') {
+    //     keyval = this.upperJSONKey(jsonObj[key]);
+    //   }
+
+    //   key = key.replace(key[0], key[0].toLowerCase());
+    //   result[key] = keyval;
+    // }
+    if (jsonObj === null) {
+      return null;
+    }
+    if (jsonObj === undefined) {
+      return undefined;
+    }
+    Object.keys(jsonObj).forEach(key => {
+      let keyval = jsonObj[key];
+      if (typeof jsonObj[key] === 'object') {
+        keyval = this.upperJSONKey(jsonObj[key]);
+      }
+
+      key = key.replace(key[0], key[0].toLowerCase());
+      result[key] = keyval;
+    });
+    return result;
+  }
+  upperJSONKey1(jsonObj) {
+    const result = {};
+    for (let key in jsonObj) {
+      let keyval = jsonObj[key];
+      if (typeof jsonObj[key] === 'object') {
+        keyval = this.upperJSONKey1(jsonObj[key]);
+      }
+
+      key = key.replace(key[0], key[0].toLowerCase());
+      result[key] = keyval;
+    }
+
+    return result;
+  }
+  test($event) {
+    console.time('33333');
+    for (let index = 0; index < 100; index++) {
+      // console.time(`2323${index}`);
+      const o = this.upperJSONKey1({
+        entity: {
+          Data: [
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+          ],
+          ExtendData: null,
+          Code: 200,
+          IsSucceed: true,
+          Message: null,
+        },
+        isSucceed: true,
+        message: '',
+        statusCode: 200,
+      });
+      // console.timeEnd(`2323${index}`);
+    }
+    console.timeEnd('33333');
+    console.time('3333');
+    for (let index = 0; index < 100; index++) {
+      // console.time(`2323${index}`);
+      const o = this.upperJSONKey({
+        entity: {
+          Data: [
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+
+            { ParentId: 0, No: 'wer', Name: 'ewrw', MnemonicCode: 'werewr', IsFiliale: true, IsSubbranch: true },
+            { ParentId: 0, No: '453', Name: '255', MnemonicCode: '345', IsFiliale: true, IsSubbranch: true },
+          ],
+          ExtendData: null,
+          Code: 200,
+          IsSucceed: true,
+          Message: null,
+        },
+        isSucceed: true,
+        message: '',
+        statusCode: 200,
+      });
+      // console.timeEnd(`2323${index}`);
+    }
+    console.timeEnd('3333');
+
+    // console.log(o);
+  }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Emes.Gateway.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Surging.Core.ApiGateWay;
 using Surging.Core.ApiGateWay.OAuth;
@@ -97,12 +98,12 @@ namespace Emes.Gateway.Controllers
                         if (!string.IsNullOrEmpty(serviceKey))
                         {
 
-                            result = ServiceResult<object>.Create(true, JsonConvert.DeserializeObject((await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath, serviceKey)).ToString()));
+                            result = ServiceResult<object>.Create(true, await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath, serviceKey));
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }
                         else
                         {
-                            result = ServiceResult<object>.Create(true, JsonConvert.DeserializeObject((await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath)).ToString()));
+                            result = ServiceResult<object>.Create(true, await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath));
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }
                     }
