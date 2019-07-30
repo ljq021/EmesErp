@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Emes.Core;
+using Surging.Core.Common;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Users;
@@ -98,7 +98,7 @@ namespace Emes.Erp.System.Implementation
             var query = _userRepository.Query;
            
             return Result.Ok(query.MapTo<UserDto>());
-            ;
+            
         }
 
         /// <summary>

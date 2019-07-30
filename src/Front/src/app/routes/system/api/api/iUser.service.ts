@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -43,7 +43,7 @@ export class IUserService {
 
 
     /**
-     * 认证用户
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -77,7 +77,7 @@ export class IUserService {
     }
 
     /**
-     * 创建用户领域模型
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -113,7 +113,7 @@ export class IUserService {
     }
 
     /**
-     * 删除用户领域模型
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -149,7 +149,7 @@ export class IUserService {
     }
 
     /**
-     * 根据Id获取用户领域模型
+     * 
      * 
      * @param id 
 * @param servicekey 
@@ -187,7 +187,7 @@ export class IUserService {
     }
 
     /**
-     * 查询用户领域模型列表
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -223,7 +223,7 @@ export class IUserService {
     }
 
     /**
-     * 更新用户领域模型
+     * 
      * 
      * @param request 
 * @param servicekey 

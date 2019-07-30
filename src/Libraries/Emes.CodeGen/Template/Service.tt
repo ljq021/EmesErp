@@ -13,6 +13,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Surging.Core.Common;
 using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.I<#=designer.Module#>;
@@ -104,7 +105,6 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
             var query = _<#=designer.CamelCaseCode#>Repository.Query;
            
             return Result.Ok(query.MapTo<<#=designer.Code#>Dto>());
-            ;
         }
 
         /// <summary>

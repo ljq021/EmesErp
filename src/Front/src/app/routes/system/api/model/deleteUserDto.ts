@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -10,9 +10,6 @@
  */
 
 
-/**
- * 删除用户领域模型Dto  删除用户Dto
- */
 export interface DeleteUserDto { 
     id?: number;
 }

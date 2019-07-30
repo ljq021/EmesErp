@@ -87,11 +87,16 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   }
   ngOnInit() {
     this.org = this.initialOrg;
+    this.getList();
   }
   reset() {
     this.f.reset();
   }
-  treeClick($event) {}
+  getList() {
+    this.orgSrv.query({ request: {} }).subscribe(x => {
+      console.log(x);
+    });
+  }
 
   add() {
     this.org = this.initialOrg;

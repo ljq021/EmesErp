@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -10,9 +10,6 @@
  */
 
 
-/**
- * 删除角色Dto  删除角色领域模型Dto
- */
 export interface DeleteRoleDto { 
     id?: number;
 }

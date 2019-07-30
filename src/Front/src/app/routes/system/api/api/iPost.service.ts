@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -41,7 +41,7 @@ export class IPostService {
 
 
     /**
-     * 创建岗位
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -77,7 +77,7 @@ export class IPostService {
     }
 
     /**
-     * 删除岗位
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -113,7 +113,7 @@ export class IPostService {
     }
 
     /**
-     * 根据Id获取岗位
+     * 
      * 
      * @param id 
 * @param servicekey 
@@ -151,7 +151,7 @@ export class IPostService {
     }
 
     /**
-     * 查询岗位列表
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -187,7 +187,7 @@ export class IPostService {
     }
 
     /**
-     * 更新岗位
+     * 
      * 
      * @param request 
 * @param servicekey 

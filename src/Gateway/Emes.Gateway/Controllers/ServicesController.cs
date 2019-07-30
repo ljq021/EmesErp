@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Emes.Gateway.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Surging.Core.ApiGateWay;
 using Surging.Core.ApiGateWay.OAuth;
 using Surging.Core.CPlatform;
@@ -36,7 +37,7 @@ namespace Emes.Gateway.Controllers
             _authorizationServerProvider = authorizationServerProvider;
         }
 
-        public async Task<ServiceResult<object>> Path([FromServices]IServicePartProvider servicePartProvider, string path, [FromBody]Dictionary<string, object> model)
+        public async Task<IActionResult> Path([FromServices]IServicePartProvider servicePartProvider, string path, [FromBody]Dictionary<string, object> model)
         {
             string serviceKey = this.Request.Query["servicekey"];
             path = path.IndexOf("/") < 0 ? $"/{path}" : path;
@@ -54,7 +55,7 @@ namespace Emes.Gateway.Controllers
                 GateWayAppConfig.AuthorizationRoutePath : path.ToLower();
             var route = await _serviceRouteProvider.GetRouteByPathRegex(path);
             if (!GetAllowRequest(route))
-                return new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.RequestError, Message = "Request error" };
+                return Json(new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.RequestError, Message = "Request error" });
             if (servicePartProvider.IsPart(path))
             {
                 result = ServiceResult<object>.Create(true, await servicePartProvider.Merge(path, model));
@@ -96,18 +97,18 @@ namespace Emes.Gateway.Controllers
                         if (!string.IsNullOrEmpty(serviceKey))
                         {
 
-                            result = ServiceResult<object>.Create(true, await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath, serviceKey));
+                            result = ServiceResult<object>.Create(true, JsonConvert.DeserializeObject((await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath, serviceKey)).ToString()));
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }
                         else
                         {
-                            result = ServiceResult<object>.Create(true, await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath));
+                            result = ServiceResult<object>.Create(true, JsonConvert.DeserializeObject((await _serviceProxyProvider.Invoke<object>(model, route.ServiceDescriptor.RoutePath)).ToString()));
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }
                     }
                 }
             }
-            return result;
+            return Json(result);
         }
 
         private bool GetAllowRequest(ServiceRoute route)

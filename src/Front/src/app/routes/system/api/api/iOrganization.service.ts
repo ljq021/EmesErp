@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -41,7 +41,7 @@ export class IOrganizationService {
 
 
     /**
-     * 创建组织机构
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -77,7 +77,7 @@ export class IOrganizationService {
     }
 
     /**
-     * 删除组织机构
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -113,7 +113,7 @@ export class IOrganizationService {
     }
 
     /**
-     * 根据Id获取组织机构
+     * 
      * 
      * @param id 
 * @param servicekey 
@@ -151,7 +151,7 @@ export class IOrganizationService {
     }
 
     /**
-     * 查询组织机构列表
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -187,7 +187,7 @@ export class IOrganizationService {
     }
 
     /**
-     * 更新组织机构
+     * 
      * 
      * @param request 
 * @param servicekey 

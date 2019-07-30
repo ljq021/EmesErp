@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Emes.Core;
+using Surging.Core.Common;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Posts;
@@ -98,7 +98,7 @@ namespace Emes.Erp.System.Implementation
             var query = _postRepository.Query;
            
             return Result.Ok(query.MapTo<PostDto>());
-            ;
+            
         }
 
         /// <summary>

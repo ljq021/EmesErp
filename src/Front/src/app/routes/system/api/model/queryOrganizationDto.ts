@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -10,8 +10,5 @@
  */
 
 
-/**
- * 查询组织机构Dto  Desc:查询组织机构领域模型Dto
- */
 export interface QueryOrganizationDto { 
 }

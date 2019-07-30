@@ -6,7 +6,7 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Emes.Core;
+using Surging.Core.Common;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;

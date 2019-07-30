@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -15,6 +15,6 @@ export interface ResultIEnumerableUserDto {
     data?: Array<UserDto>;
     extendData?: any;
     code?: number;
-    readonly isSucceed?: boolean;
-    readonly message?: string;
+    isSucceed?: boolean;
+    message?: string;
 }

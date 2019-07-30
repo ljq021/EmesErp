@@ -12,7 +12,7 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Emes.Core;
+using Surging.Core.Common;
 using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;

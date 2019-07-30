@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -10,8 +10,5 @@
  */
 
 
-/**
- * 查询用户领域模型Dto  Desc:查询用户Dto
- */
 export interface QueryUserDto { 
 }

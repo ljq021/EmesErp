@@ -1,5 +1,5 @@
 /**
- * Emes.Erp.ISystem
+ * Emes.Erp.ISystem.ec
  *
  * OpenAPI spec version: 1.0.0.0
  * 
@@ -41,7 +41,7 @@ export class IRoleService {
 
 
     /**
-     * 创建角色
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -77,7 +77,7 @@ export class IRoleService {
     }
 
     /**
-     * 删除角色
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -113,7 +113,7 @@ export class IRoleService {
     }
 
     /**
-     * 根据Id获取角色
+     * 
      * 
      * @param id 
 * @param servicekey 
@@ -151,7 +151,7 @@ export class IRoleService {
     }
 
     /**
-     * 查询角色列表
+     * 
      * 
      * @param request 
 * @param servicekey 
@@ -187,7 +187,7 @@ export class IRoleService {
     }
 
     /**
-     * 更新角色
+     * 
      * 
      * @param request 
 * @param servicekey 
