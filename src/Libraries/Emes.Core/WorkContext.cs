@@ -16,6 +16,10 @@ namespace Emes.Core
         public DateTimeOffset EffectiveDate { get; set; }
         public bool IsLimitDuplicateLogin { get; set; }
         public string Notes { get; set; }
+        /// <summary>
+        /// 租户
+        /// </summary>
+        public long TenantId { get; set; }
     }
     public class WorkContext
     {

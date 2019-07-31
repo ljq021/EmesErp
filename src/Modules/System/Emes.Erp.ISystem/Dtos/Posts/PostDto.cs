@@ -14,13 +14,13 @@ namespace Emes.Erp.ISystem.Dtos.Posts
     /// 岗位详情Dto
     /// Desc:岗位领域模型详情Dto
     /// </summary>
-    public class PostDto: DtoBase
+    public class PostDto: DtoWithIdBase
     {
          /// <summary>
-        /// 部门id
-        /// Desc:部门id
+        /// 部门
+        /// Desc:部门
         /// </summary>
-        [Required(ErrorMessage = "部门id是必填项")]
+        [Required(ErrorMessage = "部门是必填项")]
         public long OrgId { get; set; }
 /// <summary>
         /// 岗位编号
@@ -38,13 +38,13 @@ namespace Emes.Erp.ISystem.Dtos.Posts
         /// 助记码
         /// Desc:助记码
         /// </summary>
-        
+        [Required(ErrorMessage = "助记码是必填项")]
         public string MnemonicCode { get; set; }
 /// <summary>
         /// 关键岗位
         /// Desc:是否关键岗位
         /// </summary>
-        
+        [Required(ErrorMessage = "关键岗位是必填项")]
         public bool IsKey { get; set; }
 /// <summary>
         /// 所属类型

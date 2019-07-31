@@ -7,7 +7,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Emes.Erp.ISystem.Dtos.Posts;
-using Surging.Core.Common;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
@@ -26,7 +25,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<PostDto>> Create(CreatePostDto request);
+        Task<PostDto> Create(CreatePostDto request);
 
         /// <summary>
         /// 更新岗位
@@ -34,7 +33,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<PostDto>> Update(UpdatePostDto request);
+        Task<PostDto> Update(UpdatePostDto request);
 
         /// <summary>
         /// 删除岗位
@@ -42,7 +41,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<PostDto>> Delete(DeletePostDto request);
+        Task<PostDto> Delete(DeletePostDto request);
 
         /// <summary>
         /// 查询岗位列表
@@ -50,15 +49,15 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<IEnumerable<PostDto>>> Query(QueryPostDto request);
+        Task<IEnumerable<PostDto>> Query(QueryPostDto request);
 
         /// <summary>
         /// 根据Id获取岗位
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<PostDto>> GetById(long id);
+        Task<PostDto> GetById(long id);
 
 
     }

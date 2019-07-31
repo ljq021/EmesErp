@@ -11,8 +11,8 @@ using Emes.Core.Dtos;
 namespace Emes.Erp.ISystem.Dtos.Users
 {
     /// <summary>
-    /// 查询用户领域模型Dto
-    /// Desc:查询用户Dto
+    /// 查询用户Dto
+    /// Desc:查询用户领域模型Dto
     /// </summary>
     public class QueryUserDto: DtoBase
     {

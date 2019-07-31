@@ -21,7 +21,7 @@ namespace Emes.Erp.ISystem.Dtos.Organizations
         /// Desc:上级机构
         /// </summary>
         [Required(ErrorMessage = "上级机构是必填项")]
-        public long ParentId { get; set; }
+        public string ParentId { get; set; }
 /// <summary>
         /// 机构编号
         /// Desc:机构编号
@@ -38,19 +38,19 @@ namespace Emes.Erp.ISystem.Dtos.Organizations
         /// 助记码
         /// Desc:助记码
         /// </summary>
-        
+        [Required(ErrorMessage = "助记码是必填项")]
         public string MnemonicCode { get; set; }
 /// <summary>
-        /// 是否分公司
+        /// 分公司
         /// Desc:是否分公司
         /// </summary>
-        
+        [Required(ErrorMessage = "分公司是必填项")]
         public bool IsFiliale { get; set; }
 /// <summary>
-        /// 是否分店
+        /// 分店
         /// Desc:是否分店
         /// </summary>
-        
+        [Required(ErrorMessage = "分店是必填项")]
         public bool IsSubbranch { get; set; }
     }
 }

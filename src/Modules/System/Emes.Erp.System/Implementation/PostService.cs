@@ -7,12 +7,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Surging.Core.Common;
+using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Posts;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Exceptions;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
@@ -33,18 +34,16 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<PostDto>> Create(CreatePostDto request)
+        public async Task<PostDto> Create(CreatePostDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var post = request.MapTo<Post>();
-                _postRepository.Add(post);
-                return Result.Ok(post.MapTo<PostDto>());
+                throw new ValidateException(request.Message());
             }
-            else
-            {
-                return Result.Fail<PostDto>(request.Message());
-            }
+            var post = request.MapTo<Post>();
+            await  _postRepository.Add(post);
+            return post.MapTo<PostDto>();
+           
         }
 
         /// <summary>
@@ -52,23 +51,19 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<PostDto>> Delete(DeletePostDto request)
+        public async Task<PostDto> Delete(DeletePostDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var post = await _postRepository.GetById(request.Id);
-                if (post != null)
-                {
-                    await _postRepository.Remove(post);
-                    return await Result.Ok(post.MapTo<PostDto>());
-                }
-                return await Result.NotFound<PostDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var post = await _postRepository.GetById(request.Id);
+            if (post == null)
             {
-                return await Result.Fail<PostDto>(request.Message());
+               throw new BusinessException(ExceptionMessage.NotFound);
             }
+            await _postRepository.Remove(post);
+            return post.MapTo<PostDto>();
         }
 
         /// <summary>
@@ -76,15 +71,15 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<PostDto>> GetById(long id)
+        public async Task<PostDto> GetById(long id)
         {
 
             var post = await _postRepository.GetById(id);
-            if (post != null)
+            if (post == null)
             {
-                return await Result.Ok(post.MapTo<PostDto>());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
-            return await Result.NotFound<PostDto>();
+            return post.MapTo<PostDto>();
 
         }
 
@@ -93,12 +88,11 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<IEnumerable<PostDto>>> Query(QueryPostDto request)
+        public Task<IEnumerable<PostDto>> Query(QueryPostDto request)
         {
             var query = _postRepository.Query;
            
-            return Result.Ok(query.MapTo<PostDto>());
-            
+            return Task.FromResult(query.MapTo<PostDto>());
         }
 
         /// <summary>
@@ -106,24 +100,20 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<PostDto>> Update(UpdatePostDto request)
+        public async Task<PostDto> Update(UpdatePostDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var post = await _postRepository.GetById(request.Id);
-                if (post != null)
-                {
-                    post = request.MapTo(post);
-                    await _postRepository.Update(post);
-                    return await Result.Ok(post.MapTo<PostDto>());
-                }
-                return await Result.NotFound<PostDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var post = await _postRepository.GetById(request.Id);
+            if (post == null)
             {
-                return await Result.Fail<PostDto>(request.Message());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
+            post = request.MapTo(post);
+            await _postRepository.Update(post);
+            return post.MapTo<PostDto>();
         }
     }
 }

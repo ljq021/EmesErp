@@ -11,8 +11,8 @@ using Emes.Core.Dtos;
 namespace Emes.Erp.ISystem.Dtos.Users
 {
     /// <summary>
-    /// 删除用户领域模型Dto
     /// 删除用户Dto
+    /// 删除用户领域模型Dto
     /// </summary>
     public class DeleteUserDto: DtoWithIdBase
     {

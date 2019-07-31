@@ -20,7 +20,7 @@ namespace Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>
     /// <#=designer.Name#>详情Dto
     /// Desc:<#=designer.Desc#>详情Dto
     /// </summary>
-    public class <#=designer.Code#>Dto: DtoBase
+    public class <#=designer.Code#>Dto: DtoWithIdBase
     {
          <# foreach (var f in designer.DtoFields)
   { #>/// <summary>

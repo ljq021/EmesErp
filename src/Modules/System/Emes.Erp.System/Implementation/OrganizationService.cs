@@ -7,12 +7,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Surging.Core.Common;
+using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Exceptions;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
@@ -33,18 +34,16 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<OrganizationDto>> Create(CreateOrganizationDto request)
+        public async Task<OrganizationDto> Create(CreateOrganizationDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var organization = request.MapTo<Organization>();
-                _organizationRepository.Add(organization);
-                return Result.Ok(organization.MapTo<OrganizationDto>());
+                throw new ValidateException(request.Message());
             }
-            else
-            {
-                return Result.Fail<OrganizationDto>(request.Message());
-            }
+            var organization = request.MapTo<Organization>();
+            await  _organizationRepository.Add(organization);
+            return organization.MapTo<OrganizationDto>();
+           
         }
 
         /// <summary>
@@ -52,23 +51,19 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<OrganizationDto>> Delete(DeleteOrganizationDto request)
+        public async Task<OrganizationDto> Delete(DeleteOrganizationDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var organization = await _organizationRepository.GetById(request.Id);
-                if (organization != null)
-                {
-                    await _organizationRepository.Remove(organization);
-                    return await Result.Ok(organization.MapTo<OrganizationDto>());
-                }
-                return await Result.NotFound<OrganizationDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var organization = await _organizationRepository.GetById(request.Id);
+            if (organization == null)
             {
-                return await Result.Fail<OrganizationDto>(request.Message());
+               throw new BusinessException(ExceptionMessage.NotFound);
             }
+            await _organizationRepository.Remove(organization);
+            return organization.MapTo<OrganizationDto>();
         }
 
         /// <summary>
@@ -76,15 +71,15 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<OrganizationDto>> GetById(long id)
+        public async Task<OrganizationDto> GetById(long id)
         {
 
             var organization = await _organizationRepository.GetById(id);
-            if (organization != null)
+            if (organization == null)
             {
-                return await Result.Ok(organization.MapTo<OrganizationDto>());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
-            return await Result.NotFound<OrganizationDto>();
+            return organization.MapTo<OrganizationDto>();
 
         }
 
@@ -93,12 +88,11 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<IEnumerable<OrganizationDto>>> Query(QueryOrganizationDto request)
+        public Task<IEnumerable<OrganizationDto>> Query(QueryOrganizationDto request)
         {
             var query = _organizationRepository.Query;
            
-            return Result.Ok(query.MapTo<OrganizationDto>());
-            
+            return Task.FromResult(query.MapTo<OrganizationDto>());
         }
 
         /// <summary>
@@ -106,24 +100,20 @@ namespace Emes.Erp.System.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<OrganizationDto>> Update(UpdateOrganizationDto request)
+        public async Task<OrganizationDto> Update(UpdateOrganizationDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var organization = await _organizationRepository.GetById(request.Id);
-                if (organization != null)
-                {
-                    organization = request.MapTo(organization);
-                    await _organizationRepository.Update(organization);
-                    return await Result.Ok(organization.MapTo<OrganizationDto>());
-                }
-                return await Result.NotFound<OrganizationDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var organization = await _organizationRepository.GetById(request.Id);
+            if (organization == null)
             {
-                return await Result.Fail<OrganizationDto>(request.Message());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
+            organization = request.MapTo(organization);
+            await _organizationRepository.Update(organization);
+            return organization.MapTo<OrganizationDto>();
         }
     }
 }

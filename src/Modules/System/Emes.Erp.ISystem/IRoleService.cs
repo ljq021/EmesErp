@@ -6,7 +6,6 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Surging.Core.Common;
 using Emes.Erp.ISystem.Dtos.Roles;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
@@ -26,7 +25,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<RoleDto>> Create(CreateRoleDto request);
+        Task<RoleDto> Create(CreateRoleDto request);
 
         /// <summary>
         /// 更新角色
@@ -34,7 +33,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<RoleDto>> Update(UpdateRoleDto request);
+        Task<RoleDto> Update(UpdateRoleDto request);
 
         /// <summary>
         /// 删除角色
@@ -42,7 +41,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<RoleDto>> Delete(DeleteRoleDto request);
+        Task<RoleDto> Delete(DeleteRoleDto request);
 
         /// <summary>
         /// 查询角色列表
@@ -50,7 +49,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<IEnumerable<RoleDto>>> Query(QueryRoleDto request);
+        Task<IEnumerable<RoleDto>> Query(QueryRoleDto request);
 
         /// <summary>
         /// 根据Id获取角色
@@ -58,7 +57,7 @@ namespace Emes.Erp.ISystem
         /// <param name="id"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<RoleDto>> GetById(long id);
+        Task<RoleDto> GetById(long id);
 
 
     }

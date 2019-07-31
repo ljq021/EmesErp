@@ -29,10 +29,10 @@ namespace Emes.Erp.ISystem.Dtos.Roles
         
         public string Notes { get; set; }
 /// <summary>
-        /// 是否系统角色
+        /// 系统角色
         /// Desc:是否系统角色
         /// </summary>
-        [Required(ErrorMessage = "是否系统角色是必填项")]
+        [Required(ErrorMessage = "系统角色是必填项")]
         public bool IsSystemRole { get; set; }
     }
 }

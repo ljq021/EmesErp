@@ -11,18 +11,12 @@ using Emes.Core.Dtos;
 namespace Emes.Erp.ISystem.Dtos.Users
 {
     /// <summary>
-    /// 创建用户领域模型Dto
-    /// Desc:创建用户Dto
+    /// 创建用户Dto
+    /// Desc:创建用户领域模型Dto
     /// </summary>
     public class CreateUserDto: DtoBase
     {
          /// <summary>
-        /// 姓名
-        /// Desc:用户姓名
-        /// </summary>
-        [Required(ErrorMessage = "姓名是必填项")]
-        public string Name { get; set; }
-/// <summary>
         /// 密码
         /// Desc:用户密码
         /// </summary>
@@ -30,10 +24,16 @@ namespace Emes.Erp.ISystem.Dtos.Users
         public string Password { get; set; }
 /// <summary>
         /// 系统账户
-        /// Desc:系统账户
+        /// Desc:是否系统账户
         /// </summary>
         [Required(ErrorMessage = "系统账户是必填项")]
         public bool IsSystemAccount { get; set; }
+/// <summary>
+        /// 姓名
+        /// Desc:用户姓名
+        /// </summary>
+        [Required(ErrorMessage = "姓名是必填项")]
+        public string Name { get; set; }
 /// <summary>
         /// 系统名称
         /// Desc:系统名称
@@ -62,7 +62,7 @@ namespace Emes.Erp.ISystem.Dtos.Users
         /// 备注
         /// Desc:备注
         /// </summary>
-        
+        [Required(ErrorMessage = "备注是必填项")]
         public string Notes { get; set; }
     }
 }

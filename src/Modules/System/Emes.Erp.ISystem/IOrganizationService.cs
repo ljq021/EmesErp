@@ -6,7 +6,6 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Surging.Core.Common;
 using Emes.Erp.ISystem.Dtos.Organizations;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
@@ -26,7 +25,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<OrganizationDto>> Create(CreateOrganizationDto request);
+        Task<OrganizationDto> Create(CreateOrganizationDto request);
 
         /// <summary>
         /// 更新组织机构
@@ -34,7 +33,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<OrganizationDto>> Update(UpdateOrganizationDto request);
+        Task<OrganizationDto> Update(UpdateOrganizationDto request);
 
         /// <summary>
         /// 删除组织机构
@@ -42,7 +41,7 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<OrganizationDto>> Delete(DeleteOrganizationDto request);
+        Task<OrganizationDto> Delete(DeleteOrganizationDto request);
 
         /// <summary>
         /// 查询组织机构列表
@@ -50,15 +49,15 @@ namespace Emes.Erp.ISystem
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<IEnumerable<OrganizationDto>>> Query(QueryOrganizationDto request);
+        Task<IEnumerable<OrganizationDto>> Query(QueryOrganizationDto request);
 
         /// <summary>
         /// 根据Id获取组织机构
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<OrganizationDto>> GetById(long id);
+        Task<OrganizationDto> GetById(long id);
 
 
     }

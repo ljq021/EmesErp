@@ -13,13 +13,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Surging.Core.Common;
 using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.I<#=designer.Module#>;
 using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
 using Emes.Erp.<#=designer.Module#>.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Exceptions;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
@@ -40,18 +40,16 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request)
+        public async Task<<#=designer.Code#>Dto> Create(Create<#=designer.Code#>Dto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var <#=designer.CamelCaseCode#> = request.MapTo<<#=designer.Code#>>();
-                _<#=designer.CamelCaseCode#>Repository.Add(<#=designer.CamelCaseCode#>);
-                return Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+                throw new ValidateException(request.Message());
             }
-            else
-            {
-                return Result.Fail<<#=designer.Code#>Dto>(request.Message());
-            }
+            var <#=designer.CamelCaseCode#> = request.MapTo<<#=designer.Code#>>();
+            await  _<#=designer.CamelCaseCode#>Repository.Add(<#=designer.CamelCaseCode#>);
+            return <#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>();
+           
         }
 
         /// <summary>
@@ -59,23 +57,19 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request)
+        public async Task<<#=designer.Code#>Dto> Delete(Delete<#=designer.Code#>Dto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
-                if (<#=designer.CamelCaseCode#> != null)
-                {
-                    await _<#=designer.CamelCaseCode#>Repository.Remove(<#=designer.CamelCaseCode#>);
-                    return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
-                }
-                return await Result.NotFound<<#=designer.Code#>Dto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
+            if (<#=designer.CamelCaseCode#> == null)
             {
-                return await Result.Fail<<#=designer.Code#>Dto>(request.Message());
+               throw new BusinessException(ExceptionMessage.NotFound);
             }
+            await _<#=designer.CamelCaseCode#>Repository.Remove(<#=designer.CamelCaseCode#>);
+            return <#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>();
         }
 
         /// <summary>
@@ -83,15 +77,15 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<<#=designer.Code#>Dto>> GetById(long id)
+        public async Task<<#=designer.Code#>Dto> GetById(long id)
         {
 
             var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(id);
-            if (<#=designer.CamelCaseCode#> != null)
+            if (<#=designer.CamelCaseCode#> == null)
             {
-                return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
-            return await Result.NotFound<<#=designer.Code#>Dto>();
+            return <#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>();
 
         }
 
@@ -100,11 +94,11 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request)
+        public Task<IEnumerable<<#=designer.Code#>Dto>> Query(Query<#=designer.Code#>Dto request)
         {
             var query = _<#=designer.CamelCaseCode#>Repository.Query;
            
-            return Result.Ok(query.MapTo<<#=designer.Code#>Dto>());
+            return Task.FromResult(query.MapTo<<#=designer.Code#>Dto>());
         }
 
         /// <summary>
@@ -112,24 +106,20 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request)
+        public async Task<<#=designer.Code#>Dto> Update(Update<#=designer.Code#>Dto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
-                if (<#=designer.CamelCaseCode#> != null)
-                {
-                    <#=designer.CamelCaseCode#> = request.MapTo(<#=designer.CamelCaseCode#>);
-                    await _<#=designer.CamelCaseCode#>Repository.Update(<#=designer.CamelCaseCode#>);
-                    return await Result.Ok(<#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>());
-                }
-                return await Result.NotFound<<#=designer.Code#>Dto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var <#=designer.CamelCaseCode#> = await _<#=designer.CamelCaseCode#>Repository.GetById(request.Id);
+            if (<#=designer.CamelCaseCode#> == null)
             {
-                return await Result.Fail<<#=designer.Code#>Dto>(request.Message());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
+            <#=designer.CamelCaseCode#> = request.MapTo(<#=designer.CamelCaseCode#>);
+            await _<#=designer.CamelCaseCode#>Repository.Update(<#=designer.CamelCaseCode#>);
+            return <#=designer.CamelCaseCode#>.MapTo<<#=designer.Code#>Dto>();
         }
     }
 }

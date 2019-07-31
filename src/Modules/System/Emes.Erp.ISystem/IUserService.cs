@@ -6,7 +6,6 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Surging.Core.Common;
 using Emes.Erp.ISystem.Dtos.Users;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
@@ -15,56 +14,51 @@ using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attr
 namespace Emes.Erp.ISystem
 {
     /// <summary>
-    /// 用户领域模型服务接口
+    /// 用户服务接口
     /// </summary>
     [ServiceBundle("api/{Service}")]
     public interface IUserService : IServiceKey
     {
         /// <summary>
-        /// 创建用户领域模型
+        /// 创建用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<UserDto>> Create(CreateUserDto request);
+        Task<UserDto> Create(CreateUserDto request);
 
         /// <summary>
-        /// 更新用户领域模型
+        /// 更新用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<UserDto>> Update(UpdateUserDto request);
+        Task<UserDto> Update(UpdateUserDto request);
 
         /// <summary>
-        /// 删除用户领域模型
+        /// 删除用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<UserDto>> Delete(DeleteUserDto request);
+        Task<UserDto> Delete(DeleteUserDto request);
 
         /// <summary>
-        /// 查询用户领域模型列表
+        /// 查询用户列表
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<IEnumerable<UserDto>>> Query(QueryUserDto request);
+        Task<IEnumerable<UserDto>> Query(QueryUserDto request);
 
         /// <summary>
-        /// 根据Id获取用户领域模型
+        /// 根据Id获取用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<UserDto>> GetById(long id);
+        Task<UserDto> GetById(long id);
 
-        /// <summary>
-        /// 认证用户
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        Task<UserDto> Authentication(AuthUserDto request);
+
     }
 }

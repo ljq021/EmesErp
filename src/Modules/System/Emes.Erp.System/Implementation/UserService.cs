@@ -7,12 +7,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Surging.Core.Common;
+using Emes.Core;
 using Emes.Core.Data;
 using Emes.Erp.ISystem;
 using Emes.Erp.ISystem.Dtos.Users;
 using Emes.Erp.System.Models;
 using Surging.Core.AutoMapper;
+using Surging.Core.CPlatform.Exceptions;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Surging.Core.ProxyGenerator;
@@ -29,102 +30,92 @@ namespace Emes.Erp.System.Implementation
             _userRepository = userRepository;
         }
         /// <summary>
-        /// 创建用户领域模型
+        /// 创建用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<UserDto>> Create(CreateUserDto request)
+        public async Task<UserDto> Create(CreateUserDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var user = request.MapTo<User>();
-                _userRepository.Add(user);
-                return Result.Ok(user.MapTo<UserDto>());
+                throw new ValidateException(request.Message());
             }
-            else
-            {
-                return Result.Fail<UserDto>(request.Message());
-            }
+            var user = request.MapTo<User>();
+            await  _userRepository.Add(user);
+            return user.MapTo<UserDto>();
+           
         }
 
         /// <summary>
-        /// 删除用户领域模型
+        /// 删除用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<UserDto>> Delete(DeleteUserDto request)
+        public async Task<UserDto> Delete(DeleteUserDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var user = await _userRepository.GetById(request.Id);
-                if (user != null)
-                {
-                    await _userRepository.Remove(user);
-                    return await Result.Ok(user.MapTo<UserDto>());
-                }
-                return await Result.NotFound<UserDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var user = await _userRepository.GetById(request.Id);
+            if (user == null)
             {
-                return await Result.Fail<UserDto>(request.Message());
+               throw new BusinessException(ExceptionMessage.NotFound);
             }
+            await _userRepository.Remove(user);
+            return user.MapTo<UserDto>();
         }
 
         /// <summary>
-        /// 根据Id获取用户领域模型
+        /// 根据Id获取用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<UserDto>> GetById(long id)
+        public async Task<UserDto> GetById(long id)
         {
 
             var user = await _userRepository.GetById(id);
-            if (user != null)
+            if (user == null)
             {
-                return await Result.Ok(user.MapTo<UserDto>());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
-            return await Result.NotFound<UserDto>();
+            return user.MapTo<UserDto>();
 
         }
 
         /// <summary>
-        /// 查询用户领域模型列表
+        /// 查询用户列表
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public Task<Result<IEnumerable<UserDto>>> Query(QueryUserDto request)
+        public Task<IEnumerable<UserDto>> Query(QueryUserDto request)
         {
             var query = _userRepository.Query;
            
-            return Result.Ok(query.MapTo<UserDto>());
-            
+            return Task.FromResult(query.MapTo<UserDto>());
         }
 
         /// <summary>
-        /// 更新用户领域模型
+        /// 更新用户
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Result<UserDto>> Update(UpdateUserDto request)
+        public async Task<UserDto> Update(UpdateUserDto request)
         {
-            if (request.IsValid())
+            if (!request.IsValid())
             {
-                var user = await _userRepository.GetById(request.Id);
-                if (user != null)
-                {
-                    user = request.MapTo(user);
-                    await _userRepository.Update(user);
-                    return await Result.Ok(user.MapTo<UserDto>());
-                }
-                return await Result.NotFound<UserDto>();
-
+                throw new ValidateException(request.Message());
             }
-            else
+            var user = await _userRepository.GetById(request.Id);
+            if (user == null)
             {
-                return await Result.Fail<UserDto>(request.Message());
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
+            user = request.MapTo(user);
+            await _userRepository.Update(user);
+            return user.MapTo<UserDto>();
         }
+
         /// <summary>
         /// 认证用户
         /// </summary>

@@ -12,7 +12,6 @@
 #endregion
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Surging.Core.Common;
 using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Ioc;
@@ -32,7 +31,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<<#=designer.Code#>Dto>> Create(Create<#=designer.Code#>Dto request);
+        Task<<#=designer.Code#>Dto> Create(Create<#=designer.Code#>Dto request);
 
         /// <summary>
         /// 更新<#=designer.Name#>
@@ -40,7 +39,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<<#=designer.Code#>Dto>> Update(Update<#=designer.Code#>Dto request);
+        Task<<#=designer.Code#>Dto> Update(Update<#=designer.Code#>Dto request);
 
         /// <summary>
         /// 删除<#=designer.Name#>
@@ -48,7 +47,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<<#=designer.Code#>Dto>> Delete(Delete<#=designer.Code#>Dto request);
+        Task<<#=designer.Code#>Dto> Delete(Delete<#=designer.Code#>Dto request);
 
         /// <summary>
         /// 查询<#=designer.Name#>列表
@@ -56,7 +55,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// <param name="request"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<IEnumerable<<#=designer.Code#>Dto>>> Query(Query<#=designer.Code#>Dto request);
+        Task<IEnumerable<<#=designer.Code#>Dto>> Query(Query<#=designer.Code#>Dto request);
 
         /// <summary>
         /// 根据Id获取<#=designer.Name#>
@@ -64,7 +63,7 @@ namespace Emes.Erp.I<#=designer.Module#>
         /// <param name="id"></param>
         /// <returns></returns>
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<Result<<#=designer.Code#>Dto>> GetById(long id);
+        Task<<#=designer.Code#>Dto> GetById(long id);
 
 
     }

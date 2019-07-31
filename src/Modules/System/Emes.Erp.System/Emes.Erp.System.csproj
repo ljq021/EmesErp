@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Surging.Core.AutoMapper" Version="61.1.2" />
-    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.2" />
+    <PackageReference Include="Surging.Core.AutoMapper" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.3" />
   </ItemGroup>
 
   <ItemGroup>
