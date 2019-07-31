@@ -31,7 +31,8 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<bool>("IsSubbranch");
 
-                    b.Property<string>("MnemonicCode");
+                    b.Property<string>("MnemonicCode")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -66,7 +67,8 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<bool>("IsKey");
 
-                    b.Property<string>("MnemonicCode");
+                    b.Property<string>("MnemonicCode")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -140,7 +142,8 @@ namespace Emes.Erp.Host.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("Notes");
+                    b.Property<string>("Notes")
+                        .IsRequired();
 
                     b.Property<string>("Password")
                         .IsRequired();

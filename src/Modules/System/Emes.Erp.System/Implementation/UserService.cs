@@ -90,7 +90,7 @@ namespace Emes.Erp.System.Implementation
         /// <returns></returns>
         public Task<IEnumerable<UserDto>> Query(QueryUserDto request)
         {
-            var query = _userRepository.Query;
+            var query = _userRepository.Query.ToList();
            
             return Task.FromResult(query.MapTo<UserDto>());
         }

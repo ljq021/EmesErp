@@ -96,7 +96,7 @@ namespace Emes.Erp.<#=designer.Module#>.Implementation
         /// <returns></returns>
         public Task<IEnumerable<<#=designer.Code#>Dto>> Query(Query<#=designer.Code#>Dto request)
         {
-            var query = _<#=designer.CamelCaseCode#>Repository.Query;
+            var query = _<#=designer.CamelCaseCode#>Repository.Query.ToList();
            
             return Task.FromResult(query.MapTo<<#=designer.Code#>Dto>());
         }

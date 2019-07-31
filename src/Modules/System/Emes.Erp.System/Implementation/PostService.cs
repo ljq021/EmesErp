@@ -90,7 +90,7 @@ namespace Emes.Erp.System.Implementation
         /// <returns></returns>
         public Task<IEnumerable<PostDto>> Query(QueryPostDto request)
         {
-            var query = _postRepository.Query;
+            var query = _postRepository.Query.ToList();
            
             return Task.FromResult(query.MapTo<PostDto>());
         }

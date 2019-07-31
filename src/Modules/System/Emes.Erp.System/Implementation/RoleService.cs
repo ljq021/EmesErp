@@ -90,7 +90,7 @@ namespace Emes.Erp.System.Implementation
         /// <returns></returns>
         public Task<IEnumerable<RoleDto>> Query(QueryRoleDto request)
         {
-            var query = _roleRepository.Query;
+            var query = _roleRepository.Query.ToList();
            
             return Task.FromResult(query.MapTo<RoleDto>());
         }

@@ -21,7 +21,7 @@ namespace Emes.Erp.ISystem.Dtos.Organizations
         /// Desc:上级机构
         /// </summary>
         [Required(ErrorMessage = "上级机构是必填项")]
-        public string ParentId { get; set; }
+        public long ParentId { get; set; }
 /// <summary>
         /// 机构编号
         /// Desc:机构编号

@@ -17,6 +17,7 @@ import { environment } from '@env/environment';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 import { NotificationService } from '@core/service/notification.service';
 import { camelCaseJSONKey, isJson } from '@shared/utils/json';
+import { AppService } from '@core';
 
 const CODEMESSAGE = {
   200: '服务器成功返回请求的数据。',
@@ -35,6 +36,62 @@ const CODEMESSAGE = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
+enum StatusCode {
+  /// <summary>
+  /// 成功调用
+  /// </summary>
+  OK = 200,
+
+  /// <summary>
+  /// 通信错误
+  /// </summary>
+  CommunicationError = 501,
+
+  /// <summary>
+  /// 平台架构异常
+  /// </summary>
+  CPlatformError = 502,
+
+  /// <summary>
+  /// 业务处理异常
+  /// </summary>
+  BusinessError = 503,
+
+  /// <summary>
+  /// 输入错误
+  /// </summary>
+  ValidateError = 504,
+
+  /// <summary>
+  /// 数据访问错误
+  /// </summary>
+  DataAccessError = 505,
+
+  /// <summary>
+  /// 用户友好类异常
+  /// </summary>
+  UserFriendly = 506,
+
+  /// <summary>
+  /// 未被认证
+  /// </summary>
+  UnAuthentication = 401,
+
+  /// <summary>
+  /// 未授权
+  /// </summary>
+  UnAuthorized = 403,
+
+  /// <summary>
+  /// 请求错误
+  /// </summary>
+  RequestError = 500,
+
+  /// <summary>
+  /// 未知错误
+  /// </summary>
+  UnKnownError = -1,
+}
 
 /**
  * 默认HTTP拦截器，其注册细节见 `app.module.ts`
@@ -45,6 +102,10 @@ export class DefaultInterceptor implements HttpInterceptor {
 
   private get notification(): NotificationService {
     return this.injector.get(NotificationService);
+  }
+
+  private get appSrv(): AppService {
+    return this.injector.get(AppService);
   }
 
   private goTo(url: string) {
@@ -77,7 +138,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         if (ev instanceof HttpResponse) {
           const body: any = ev.body;
           if (body && body.isSucceed === false) {
-            this.notification.error(body.message);
+            this.emesMessage(body);
             // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
             // this.http.get('/').subscribe() 并不会触发
             return throwError({ ignore: true });
@@ -98,7 +159,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         this.notification.error(`未登录或登录已过期，请重新登录。`);
         // 清空 token 信息
         (this.injector.get(DA_SERVICE_TOKEN) as ITokenService).clear();
-        this.goTo('/passport/login');
+        this.goTo(this.appSrv.loginUrl);
         break;
       case 403:
       case 404:
@@ -135,5 +196,27 @@ export class DefaultInterceptor implements HttpInterceptor {
       }),
       catchError((err: HttpErrorResponse) => this.handleData(err)),
     );
+  }
+
+  private emesMessage(body: any) {
+    switch (body.statusCode) {
+      case StatusCode.UnAuthentication:
+        this.notification.error(body.message);
+        this.goTo(this.appSrv.loginUrl);
+        break;
+      case StatusCode.UnAuthorized:
+        this.notification.error(body.message);
+        this.goTo(this.appSrv.unAuthorizedUrl);
+        break;
+      case StatusCode.UserFriendly:
+        this.notification.info(body.message);
+        break;
+      case StatusCode.ValidateError:
+        this.notification.warning(body.message);
+        break;
+      default:
+        this.notification.error(body.message);
+        break;
+    }
   }
 }

@@ -90,7 +90,7 @@ namespace Emes.Erp.System.Implementation
         /// <returns></returns>
         public Task<IEnumerable<OrganizationDto>> Query(QueryOrganizationDto request)
         {
-            var query = _organizationRepository.Query;
+            var query = _organizationRepository.Query.ToList();
            
             return Task.FromResult(query.MapTo<OrganizationDto>());
         }
