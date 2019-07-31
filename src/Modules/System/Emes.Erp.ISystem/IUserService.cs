@@ -59,6 +59,12 @@ namespace Emes.Erp.ISystem
         [Authorization(AuthType = AuthorizationType.JWT)]
         Task<UserDto> GetById(long id);
 
+        /// <summary>
+        /// 认证用户
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<UserDto> Authentication(AuthUserDto request);
 
     }
 }
