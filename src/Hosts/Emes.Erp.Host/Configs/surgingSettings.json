@@ -153,7 +153,7 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source = 127.0.0.1;Initial Catalog = EmesErp;User Id = sa;Password = 123456;"
+    "DefaultConnection": "Data Source = greatma.tpddns.cn,14330;Initial Catalog = EmesErp;User Id = sa;Password = Emes@123;"
   },
   "Automapper": {
     "Assemblies": "Emes.Erp.System;Surging.*.Common;"

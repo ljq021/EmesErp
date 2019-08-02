@@ -39,6 +39,7 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   }
   getList() {
     this.orgSrv.query({ request: {} }).subscribe((x: any) => {
+      if (!x) return;
       this.nodes = this.arrSrv.arrToTree(x, {
         parentIdMapName: 'parentId',
       });
@@ -55,12 +56,16 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
     if (this.org.id === undefined) {
       this.orgSrv.create({ request: this.org }).subscribe(x => {
         if (x.isSucceed) {
+          this.notifySrv.success();
+          this.getList();
           this.reset();
         }
       });
     } else {
       this.orgSrv.update(this.org).subscribe(x => {
         if (x.isSucceed) {
+          this.notifySrv.success();
+          this.getList();
           this.reset();
         }
       });
@@ -68,8 +73,13 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   }
   delete($event) {
     if (this.org.id !== undefined) {
-      this.orgSrv.delete({ request: { id: this.org.id } }).subscribe(x => {});
+      this.orgSrv.delete({ request: { id: this.org.id } }).subscribe(x => {
+        this.notifySrv.success();
+        this.reset();
+        this.getList();
+      });
     } else {
+      this.notifySrv.info('请选择需要删除的记录！');
       // this.edit();
     }
   }
