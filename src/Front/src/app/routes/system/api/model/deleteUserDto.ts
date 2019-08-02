@@ -11,5 +11,5 @@
 
 
 export interface DeleteUserDto { 
-    id?: number;
+    id?: string;
 }

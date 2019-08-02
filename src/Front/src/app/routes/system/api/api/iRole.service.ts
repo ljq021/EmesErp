@@ -21,8 +21,8 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { HttpResultMessageResultIEnumerableRoleDto } from '../model/httpResultMessageResultIEnumerableRoleDto';
-import { HttpResultMessageResultRoleDto } from '../model/httpResultMessageResultRoleDto';
+import { HttpResultMessageIEnumerableRoleDto } from '../model/httpResultMessageIEnumerableRoleDto';
+import { HttpResultMessageRoleDto } from '../model/httpResultMessageRoleDto';
 import { Request10 } from '../model/request10';
 import { Request11 } from '../model/request11';
 import { Request8 } from '../model/request8';
@@ -47,9 +47,9 @@ export class IRoleService {
 * @param servicekey 
 * @param authorization 
      */
-    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultRoleDto>;
-    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultRoleDto>>;
-    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultRoleDto>>;
+    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageRoleDto>;
+    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageRoleDto>>;
+    public create(request: Request8, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageRoleDto>>;
     public create(request: Request8, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -64,7 +64,7 @@ export class IRoleService {
         }
 
 
-        return this.http.post<HttpResultMessageResultRoleDto>(`/api/role/create`,
+        return this.http.post<HttpResultMessageRoleDto>(`/api/role/create`,
             request,
             
                  queryParameters,
@@ -83,9 +83,9 @@ export class IRoleService {
 * @param servicekey 
 * @param authorization 
      */
-    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultRoleDto>;
-    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultRoleDto>>;
-    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultRoleDto>>;
+    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageRoleDto>;
+    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageRoleDto>>;
+    public delete(request: Request9, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageRoleDto>>;
     public delete(request: Request9, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -100,7 +100,7 @@ export class IRoleService {
         }
 
 
-        return this.http.post<HttpResultMessageResultRoleDto>(`/api/role/delete`,
+        return this.http.post<HttpResultMessageRoleDto>(`/api/role/delete`,
             request,
             
                  queryParameters,
@@ -119,10 +119,10 @@ export class IRoleService {
 * @param servicekey 
 * @param authorization 
      */
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultRoleDto>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultRoleDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultRoleDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageRoleDto>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageRoleDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageRoleDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getbyid.');
@@ -139,7 +139,7 @@ export class IRoleService {
         }
 
 
-        return this.http.get<HttpResultMessageResultRoleDto>(`/api/role/getbyid`,
+        return this.http.get<HttpResultMessageRoleDto>(`/api/role/getbyid`,
             
                  queryParameters,
     
@@ -157,9 +157,9 @@ export class IRoleService {
 * @param servicekey 
 * @param authorization 
      */
-    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerableRoleDto>;
-    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerableRoleDto>>;
-    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerableRoleDto>>;
+    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageIEnumerableRoleDto>;
+    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageIEnumerableRoleDto>>;
+    public query(request: Request10, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageIEnumerableRoleDto>>;
     public query(request: Request10, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -174,7 +174,7 @@ export class IRoleService {
         }
 
 
-        return this.http.post<HttpResultMessageResultIEnumerableRoleDto>(`/api/role/query`,
+        return this.http.post<HttpResultMessageIEnumerableRoleDto>(`/api/role/query`,
             request,
             
                  queryParameters,
@@ -193,9 +193,9 @@ export class IRoleService {
 * @param servicekey 
 * @param authorization 
      */
-    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultRoleDto>;
-    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultRoleDto>>;
-    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultRoleDto>>;
+    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageRoleDto>;
+    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageRoleDto>>;
+    public update(request: Request11, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageRoleDto>>;
     public update(request: Request11, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -210,7 +210,7 @@ export class IRoleService {
         }
 
 
-        return this.http.post<HttpResultMessageResultRoleDto>(`/api/role/update`,
+        return this.http.post<HttpResultMessageRoleDto>(`/api/role/update`,
             request,
             
                  queryParameters,

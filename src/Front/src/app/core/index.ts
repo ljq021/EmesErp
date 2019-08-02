@@ -4,3 +4,4 @@ export * from './net/default.interceptor';
 export * from './startup/startup.service';
 export * from './service/notification.service';
 export * from './service/app.service';
+export * from './service/array.service';

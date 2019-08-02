@@ -11,5 +11,5 @@
 
 
 export interface DeleteRoleDto { 
-    id?: number;
+    id?: string;
 }

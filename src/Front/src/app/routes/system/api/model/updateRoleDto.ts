@@ -14,5 +14,5 @@ export interface UpdateRoleDto {
     name: string;
     notes?: string;
     isSystemRole: boolean;
-    id?: number;
+    id?: string;
 }

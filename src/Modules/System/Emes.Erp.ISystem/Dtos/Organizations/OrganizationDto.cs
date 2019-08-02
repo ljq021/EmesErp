@@ -14,39 +14,39 @@ namespace Emes.Erp.ISystem.Dtos.Organizations
     /// 组织机构详情Dto
     /// Desc:组织机构领域模型详情Dto
     /// </summary>
-    public class OrganizationDto: DtoWithIdBase
+    public class OrganizationDto : DtoWithIdBase
     {
-         /// <summary>
+        /// <summary>
         /// 上级机构
         /// Desc:上级机构
         /// </summary>
         [Required(ErrorMessage = "上级机构是必填项")]
         public long ParentId { get; set; }
-/// <summary>
+        /// <summary>
         /// 机构编号
         /// Desc:机构编号
         /// </summary>
         [Required(ErrorMessage = "机构编号是必填项")]
         public string No { get; set; }
-/// <summary>
+        /// <summary>
         /// 机构名称
         /// Desc:机构名称
         /// </summary>
         [Required(ErrorMessage = "机构名称是必填项")]
         public string Name { get; set; }
-/// <summary>
+        /// <summary>
         /// 助记码
         /// Desc:助记码
         /// </summary>
         [Required(ErrorMessage = "助记码是必填项")]
         public string MnemonicCode { get; set; }
-/// <summary>
+        /// <summary>
         /// 分公司
         /// Desc:是否分公司
         /// </summary>
         [Required(ErrorMessage = "分公司是必填项")]
         public bool IsFiliale { get; set; }
-/// <summary>
+        /// <summary>
         /// 分店
         /// Desc:是否分店
         /// </summary>

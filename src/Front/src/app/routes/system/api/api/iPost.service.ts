@@ -21,8 +21,8 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { HttpResultMessageResultIEnumerablePostDto } from '../model/httpResultMessageResultIEnumerablePostDto';
-import { HttpResultMessageResultPostDto } from '../model/httpResultMessageResultPostDto';
+import { HttpResultMessageIEnumerablePostDto } from '../model/httpResultMessageIEnumerablePostDto';
+import { HttpResultMessagePostDto } from '../model/httpResultMessagePostDto';
 import { Request4 } from '../model/request4';
 import { Request5 } from '../model/request5';
 import { Request6 } from '../model/request6';
@@ -47,9 +47,9 @@ export class IPostService {
 * @param servicekey 
 * @param authorization 
      */
-    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessagePostDto>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessagePostDto>>;
+    public create(request: Request4, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessagePostDto>>;
     public create(request: Request4, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -64,7 +64,7 @@ export class IPostService {
         }
 
 
-        return this.http.post<HttpResultMessageResultPostDto>(`/api/post/create`,
+        return this.http.post<HttpResultMessagePostDto>(`/api/post/create`,
             request,
             
                  queryParameters,
@@ -83,9 +83,9 @@ export class IPostService {
 * @param servicekey 
 * @param authorization 
      */
-    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessagePostDto>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessagePostDto>>;
+    public delete(request: Request5, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessagePostDto>>;
     public delete(request: Request5, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -100,7 +100,7 @@ export class IPostService {
         }
 
 
-        return this.http.post<HttpResultMessageResultPostDto>(`/api/post/delete`,
+        return this.http.post<HttpResultMessagePostDto>(`/api/post/delete`,
             request,
             
                  queryParameters,
@@ -119,10 +119,10 @@ export class IPostService {
 * @param servicekey 
 * @param authorization 
      */
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessagePostDto>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessagePostDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessagePostDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getbyid.');
@@ -139,7 +139,7 @@ export class IPostService {
         }
 
 
-        return this.http.get<HttpResultMessageResultPostDto>(`/api/post/getbyid`,
+        return this.http.get<HttpResultMessagePostDto>(`/api/post/getbyid`,
             
                  queryParameters,
     
@@ -157,9 +157,9 @@ export class IPostService {
 * @param servicekey 
 * @param authorization 
      */
-    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerablePostDto>;
-    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerablePostDto>>;
-    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerablePostDto>>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageIEnumerablePostDto>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageIEnumerablePostDto>>;
+    public query(request: Request6, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageIEnumerablePostDto>>;
     public query(request: Request6, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -174,7 +174,7 @@ export class IPostService {
         }
 
 
-        return this.http.post<HttpResultMessageResultIEnumerablePostDto>(`/api/post/query`,
+        return this.http.post<HttpResultMessageIEnumerablePostDto>(`/api/post/query`,
             request,
             
                  queryParameters,
@@ -193,9 +193,9 @@ export class IPostService {
 * @param servicekey 
 * @param authorization 
      */
-    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultPostDto>;
-    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultPostDto>>;
-    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultPostDto>>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessagePostDto>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessagePostDto>>;
+    public update(request: Request7, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessagePostDto>>;
     public update(request: Request7, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -210,7 +210,7 @@ export class IPostService {
         }
 
 
-        return this.http.post<HttpResultMessageResultPostDto>(`/api/post/update`,
+        return this.http.post<HttpResultMessagePostDto>(`/api/post/update`,
             request,
             
                  queryParameters,

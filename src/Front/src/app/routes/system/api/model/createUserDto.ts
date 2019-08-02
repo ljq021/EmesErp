@@ -11,12 +11,12 @@
 
 
 export interface CreateUserDto { 
-    name: string;
     password: string;
     isSystemAccount: boolean;
+    name: string;
     systemName: string;
     isLock: boolean;
     effectiveDate: Date;
     isLimitDuplicateLogin: boolean;
-    notes?: string;
+    notes: string;
 }

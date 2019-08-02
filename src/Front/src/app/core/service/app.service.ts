@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AppService {
-  loginUrl: '/passport/login';
-  unAuthorizedUrl: '/exception/403';
+  loginUrl = '/passport/login';
+  unAuthorizedUrl = '/exception/403';
 
   constructor() {}
 }

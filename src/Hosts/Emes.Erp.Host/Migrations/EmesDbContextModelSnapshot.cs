@@ -157,6 +157,8 @@ namespace Emes.Erp.Host.Migrations
 
                     b.Property<DateTimeOffset>("UpdatedOn");
 
+                    b.Property<Guid>("UserGuid");
+
                     b.Property<int>("Version");
 
                     b.HasKey("Id");

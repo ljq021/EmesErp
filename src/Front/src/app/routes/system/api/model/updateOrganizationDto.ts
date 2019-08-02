@@ -11,11 +11,11 @@
 
 
 export interface UpdateOrganizationDto { 
-    parentId: number;
+    parentId: string;
     no: string;
     name: string;
-    mnemonicCode?: string;
-    isFiliale?: boolean;
-    isSubbranch?: boolean;
-    id?: number;
+    mnemonicCode: string;
+    isFiliale: boolean;
+    isSubbranch: boolean;
+    id?: string;
 }

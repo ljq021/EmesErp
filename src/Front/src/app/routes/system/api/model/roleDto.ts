@@ -14,4 +14,5 @@ export interface RoleDto {
     name: string;
     notes?: string;
     isSystemRole: boolean;
+    id?: string;
 }

@@ -15,8 +15,8 @@ import { NzMessageService, NzNotificationService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { environment } from '@env/environment';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { NotificationService } from '@core/service/notification.service';
-import { camelCaseJSONKey, isJson } from '@shared/utils/json';
+import { NotificationService } from '@core';
+import { camelCaseJSONKey, isJson, getRealJsonData } from '@shared/utils/json';
 import { AppService } from '@core';
 
 const CODEMESSAGE = {
@@ -147,6 +147,7 @@ export class DefaultInterceptor implements HttpInterceptor {
             return of(
               new HttpResponse({
                 ...ev,
+                // body: isJson(body.entity) ? camelCaseJSONKey(getRealJsonData(body.entity)) : body.entity,
                 body: isJson(body.entity) ? camelCaseJSONKey(JSON.parse(body.entity)) : body.entity,
               }),
             );

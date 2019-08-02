@@ -11,12 +11,13 @@
 
 
 export interface PostDto { 
-    orgId: number;
+    orgId: string;
     no: string;
     name: string;
-    mnemonicCode?: string;
-    isKey?: boolean;
+    mnemonicCode: string;
+    isKey: boolean;
     type: number;
     responsibility?: string;
     desc?: string;
+    id?: string;
 }

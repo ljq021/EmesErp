@@ -11,13 +11,13 @@
 
 
 export interface UpdateUserDto { 
-    name: string;
     password: string;
     isSystemAccount: boolean;
+    name: string;
     systemName: string;
     isLock: boolean;
     effectiveDate: Date;
     isLimitDuplicateLogin: boolean;
-    notes?: string;
-    id?: number;
+    notes: string;
+    id?: string;
 }

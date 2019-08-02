@@ -2,6 +2,8 @@
   "AccessTokenExpireTimeSpan": "30",
   "AuthorizationRoutePath": "api/user/authentication",
   "AuthorizationServiceKey": "User",
+  "AclRoutePath": "api/user/acl",
+  "AclServiceKey": "User",
   "TokenEndpointPath": "api/oauth2/token",
   "CacheMode": "ddlCache.Redis", //MemoryCache or  gateway.Redis save token
   "AccessPolicy": {

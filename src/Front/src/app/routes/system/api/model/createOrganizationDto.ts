@@ -11,10 +11,10 @@
 
 
 export interface CreateOrganizationDto { 
-    parentId: number;
+    parentId: string;
     no: string;
     name: string;
-    mnemonicCode?: string;
-    isFiliale?: boolean;
-    isSubbranch?: boolean;
+    mnemonicCode: string;
+    isFiliale: boolean;
+    isSubbranch: boolean;
 }

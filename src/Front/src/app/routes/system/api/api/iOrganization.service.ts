@@ -21,8 +21,8 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { HttpResultMessageResultIEnumerableOrganizationDto } from '../model/httpResultMessageResultIEnumerableOrganizationDto';
-import { HttpResultMessageResultOrganizationDto } from '../model/httpResultMessageResultOrganizationDto';
+import { HttpResultMessageIEnumerableOrganizationDto } from '../model/httpResultMessageIEnumerableOrganizationDto';
+import { HttpResultMessageOrganizationDto } from '../model/httpResultMessageOrganizationDto';
 import { Request } from '../model/request';
 import { Request1 } from '../model/request1';
 import { Request2 } from '../model/request2';
@@ -47,9 +47,9 @@ export class IOrganizationService {
 * @param servicekey 
 * @param authorization 
      */
-    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultOrganizationDto>;
-    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultOrganizationDto>>;
-    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultOrganizationDto>>;
+    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageOrganizationDto>;
+    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageOrganizationDto>>;
+    public create(request: Request, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageOrganizationDto>>;
     public create(request: Request, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -64,7 +64,7 @@ export class IOrganizationService {
         }
 
 
-        return this.http.post<HttpResultMessageResultOrganizationDto>(`/api/organization/create`,
+        return this.http.post<HttpResultMessageOrganizationDto>(`/api/organization/create`,
             request,
             
                  queryParameters,
@@ -83,9 +83,9 @@ export class IOrganizationService {
 * @param servicekey 
 * @param authorization 
      */
-    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultOrganizationDto>;
-    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultOrganizationDto>>;
-    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultOrganizationDto>>;
+    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageOrganizationDto>;
+    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageOrganizationDto>>;
+    public delete(request: Request1, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageOrganizationDto>>;
     public delete(request: Request1, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -100,7 +100,7 @@ export class IOrganizationService {
         }
 
 
-        return this.http.post<HttpResultMessageResultOrganizationDto>(`/api/organization/delete`,
+        return this.http.post<HttpResultMessageOrganizationDto>(`/api/organization/delete`,
             request,
             
                  queryParameters,
@@ -119,10 +119,10 @@ export class IOrganizationService {
 * @param servicekey 
 * @param authorization 
      */
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultOrganizationDto>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultOrganizationDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultOrganizationDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageOrganizationDto>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageOrganizationDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageOrganizationDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getbyid.');
@@ -139,7 +139,7 @@ export class IOrganizationService {
         }
 
 
-        return this.http.get<HttpResultMessageResultOrganizationDto>(`/api/organization/getbyid`,
+        return this.http.get<HttpResultMessageOrganizationDto>(`/api/organization/getbyid`,
             
                  queryParameters,
     
@@ -157,9 +157,9 @@ export class IOrganizationService {
 * @param servicekey 
 * @param authorization 
      */
-    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerableOrganizationDto>;
-    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerableOrganizationDto>>;
-    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerableOrganizationDto>>;
+    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageIEnumerableOrganizationDto>;
+    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageIEnumerableOrganizationDto>>;
+    public query(request: Request2, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageIEnumerableOrganizationDto>>;
     public query(request: Request2, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -174,7 +174,7 @@ export class IOrganizationService {
         }
 
 
-        return this.http.post<HttpResultMessageResultIEnumerableOrganizationDto>(`/api/organization/query`,
+        return this.http.post<HttpResultMessageIEnumerableOrganizationDto>(`/api/organization/query`,
             request,
             
                  queryParameters,
@@ -193,9 +193,9 @@ export class IOrganizationService {
 * @param servicekey 
 * @param authorization 
      */
-    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultOrganizationDto>;
-    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultOrganizationDto>>;
-    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultOrganizationDto>>;
+    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageOrganizationDto>;
+    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageOrganizationDto>>;
+    public update(request: Request3, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageOrganizationDto>>;
     public update(request: Request3, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
@@ -210,7 +210,7 @@ export class IOrganizationService {
         }
 
 
-        return this.http.post<HttpResultMessageResultOrganizationDto>(`/api/organization/update`,
+        return this.http.post<HttpResultMessageOrganizationDto>(`/api/organization/update`,
             request,
             
                  queryParameters,

@@ -21,14 +21,14 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { HttpResultMessageResultIEnumerableUserDto } from '../model/httpResultMessageResultIEnumerableUserDto';
-import { HttpResultMessageResultUserDto } from '../model/httpResultMessageResultUserDto';
+import { HttpResultMessageAclDto } from '../model/httpResultMessageAclDto';
+import { HttpResultMessageIEnumerableUserDto } from '../model/httpResultMessageIEnumerableUserDto';
 import { HttpResultMessageUserDto } from '../model/httpResultMessageUserDto';
-import { Request12 } from '../model/request12';
 import { Request13 } from '../model/request13';
 import { Request14 } from '../model/request14';
 import { Request15 } from '../model/request15';
 import { Request16 } from '../model/request16';
+import { Request17 } from '../model/request17';
  
 
 
@@ -45,13 +45,41 @@ export class IUserService {
     /**
      * 
      * 
+     * @param servicekey 
+     */
+    public acl(servicekey?: any, observe?: 'body'): Observable<HttpResultMessageAclDto>;
+    public acl(servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageAclDto>>;
+    public acl(servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageAclDto>>;
+    public acl(servicekey?: any, observe: any = 'body'): Observable<any> {
+
+        const queryParameters:any = {};
+  
+        if (servicekey !== undefined && servicekey !== null) {
+            queryParameters.servicekey = servicekey;
+        }
+
+
+        return this.http.get<HttpResultMessageAclDto>(`/api/user/acl`,
+            
+                 queryParameters,
+    
+            {
+               
+                observe,
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param request 
 * @param servicekey 
      */
-    public authentication(request: Request12, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
-    public authentication(request: Request12, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
-    public authentication(request: Request12, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
-    public authentication(request: Request12, servicekey?: any, observe: any = 'body'): Observable<any> {
+    public authentication(request: Request13, servicekey?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
+    public authentication(request: Request13, servicekey?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
+    public authentication(request: Request13, servicekey?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
+    public authentication(request: Request13, servicekey?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling authentication.');
@@ -83,10 +111,10 @@ export class IUserService {
 * @param servicekey 
 * @param authorization 
      */
-    public create(request: Request13, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultUserDto>;
-    public create(request: Request13, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultUserDto>>;
-    public create(request: Request13, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultUserDto>>;
-    public create(request: Request13, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public create(request: Request14, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
+    public create(request: Request14, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
+    public create(request: Request14, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
+    public create(request: Request14, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling create.');
@@ -100,7 +128,7 @@ export class IUserService {
         }
 
 
-        return this.http.post<HttpResultMessageResultUserDto>(`/api/user/create`,
+        return this.http.post<HttpResultMessageUserDto>(`/api/user/create`,
             request,
             
                  queryParameters,
@@ -119,10 +147,10 @@ export class IUserService {
 * @param servicekey 
 * @param authorization 
      */
-    public delete(request: Request14, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultUserDto>;
-    public delete(request: Request14, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultUserDto>>;
-    public delete(request: Request14, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultUserDto>>;
-    public delete(request: Request14, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public delete(request: Request15, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
+    public delete(request: Request15, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
+    public delete(request: Request15, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
+    public delete(request: Request15, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling delete.');
@@ -136,7 +164,7 @@ export class IUserService {
         }
 
 
-        return this.http.post<HttpResultMessageResultUserDto>(`/api/user/delete`,
+        return this.http.post<HttpResultMessageUserDto>(`/api/user/delete`,
             request,
             
                  queryParameters,
@@ -155,10 +183,10 @@ export class IUserService {
 * @param servicekey 
 * @param authorization 
      */
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultUserDto>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultUserDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultUserDto>>;
-    public getbyid(id: number, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
+    public getbyid(id: string, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getbyid.');
@@ -175,7 +203,7 @@ export class IUserService {
         }
 
 
-        return this.http.get<HttpResultMessageResultUserDto>(`/api/user/getbyid`,
+        return this.http.get<HttpResultMessageUserDto>(`/api/user/getbyid`,
             
                  queryParameters,
     
@@ -193,10 +221,10 @@ export class IUserService {
 * @param servicekey 
 * @param authorization 
      */
-    public query(request: Request15, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultIEnumerableUserDto>;
-    public query(request: Request15, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultIEnumerableUserDto>>;
-    public query(request: Request15, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultIEnumerableUserDto>>;
-    public query(request: Request15, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public query(request: Request16, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageIEnumerableUserDto>;
+    public query(request: Request16, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageIEnumerableUserDto>>;
+    public query(request: Request16, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageIEnumerableUserDto>>;
+    public query(request: Request16, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling query.');
@@ -210,7 +238,7 @@ export class IUserService {
         }
 
 
-        return this.http.post<HttpResultMessageResultIEnumerableUserDto>(`/api/user/query`,
+        return this.http.post<HttpResultMessageIEnumerableUserDto>(`/api/user/query`,
             request,
             
                  queryParameters,
@@ -229,10 +257,10 @@ export class IUserService {
 * @param servicekey 
 * @param authorization 
      */
-    public update(request: Request16, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageResultUserDto>;
-    public update(request: Request16, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageResultUserDto>>;
-    public update(request: Request16, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageResultUserDto>>;
-    public update(request: Request16, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
+    public update(request: Request17, servicekey?: any, authorization?: any, observe?: 'body'): Observable<HttpResultMessageUserDto>;
+    public update(request: Request17, servicekey?: any, authorization?: any, observe?: 'response'): Observable<HttpResponse<HttpResultMessageUserDto>>;
+    public update(request: Request17, servicekey?: any, authorization?: any, observe?: 'events'): Observable<HttpEvent<HttpResultMessageUserDto>>;
+    public update(request: Request17, servicekey?: any, authorization?: any, observe: any = 'body'): Observable<any> {
 
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling update.');
@@ -246,7 +274,7 @@ export class IUserService {
         }
 
 
-        return this.http.post<HttpResultMessageResultUserDto>(`/api/user/update`,
+        return this.http.post<HttpResultMessageUserDto>(`/api/user/update`,
             request,
             
                  queryParameters,

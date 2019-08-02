@@ -66,5 +66,11 @@ namespace Emes.Erp.ISystem
         /// <returns></returns>
         Task<UserDto> Authentication(AuthUserDto request);
 
+        /// <summary>
+        /// 认证用户
+        /// </summary>
+        /// <returns></returns>
+        Task<AclDto> Acl();
+
     }
 }

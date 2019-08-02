@@ -2,7 +2,7 @@
   <div nz-col nzMd="24" nzLg="7">
     <nz-card [nzBordered]="false" nzSize="small" [nzTitle]="titleTpl">
       <ng-template #titleTpl>
-        <button type="button" nz-button nzType="default" nzSize="small" (click)="add($event)">新增</button>
+        <button type="button" nz-button nzType="primary" nzSize="small" (click)="add($event)">新增</button>
         <button type="button" nz-button nzType="default" nzSize="small" (click)="delete($event)">删除</button>
         <button type="button" nz-button nzType="default" nzSize="small" (click)="close($event)">关闭</button>
       </ng-template>
@@ -11,10 +11,10 @@
 
       </nz-tree>
       <ng-template #nzTreeTemplate let-node>
-        <span>
+        <span class="e_tree-node" [ngClass]="{'e_tree-node-selected':node.isSelected}">
           <i nz-icon nzType="file" class="mr4"></i>
-          <span class="file-name">{{ node.title }}</span>
-          <span class="file-desc">modified by {{ node?.origin?.author | lowercase }}</span>
+          <span class="file-name">{{ node?.origin?.no }}</span>
+          <span class="file-desc"> {{ node?.origin?.name }}</span>
         </span>
       </ng-template>
     </nz-card>
@@ -28,22 +28,22 @@
           </nz-tree-select>
         </se>
         <se label="机构编号" required col="1">
-          <input type="text" nz-input [(ngModel)]="org.No" name="org_No" required>
+          <input type="text" nz-input [(ngModel)]="org.no" name="org_no" required>
         </se>
         <se label="机构名称" required col="1">
-          <input type="text" nz-input [(ngModel)]="org.Name" name="org_Name" required>
+          <input type="text" nz-input [(ngModel)]="org.name" name="org_name" required>
         </se>
         <se label="助记码" col="1">
-          <input type="text" nz-input [(ngModel)]="org.MnemonicCode" name="org_MnemonicCode" required>
+          <input type="text" nz-input [(ngModel)]="org.mnemonicCode" name="org_mnemonicCode" required>
         </se>
         <se label="是否分公司" col="1">
-          <nz-radio-group [(ngModel)]="org.IsFiliale" name="org_IsFiliale">
+          <nz-radio-group [(ngModel)]="org.isFiliale" name="org_isFiliale">
             <label nz-radio [nzValue]="true">是</label>
             <label nz-radio [nzValue]="false">否</label>
           </nz-radio-group>
         </se>
         <se label="是否分店" col="1">
-          <nz-radio-group [(ngModel)]="org.IsSubbranch" name="org_IsSubbranch">
+          <nz-radio-group [(ngModel)]="org.isSubbranch" name="org_isSubbranch">
             <label nz-radio [nzValue]="true">是</label>
             <label nz-radio [nzValue]="false">否</label>
           </nz-radio-group>

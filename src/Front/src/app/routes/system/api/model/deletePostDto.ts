@@ -11,5 +11,5 @@
 
 
 export interface DeletePostDto { 
-    id?: number;
+    id?: string;
 }

@@ -4,6 +4,7 @@
 //        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
 //======================================================================
 #endregion
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,9 +42,9 @@ namespace Emes.Erp.System.Implementation
                 throw new ValidateException(request.Message());
             }
             var user = request.MapTo<User>();
-            await  _userRepository.Add(user);
+            await _userRepository.Add(user);
             return user.MapTo<UserDto>();
-           
+
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Emes.Erp.System.Implementation
             var user = await _userRepository.GetById(request.Id);
             if (user == null)
             {
-               throw new BusinessException(ExceptionMessage.NotFound);
+                throw new BusinessException(ExceptionMessage.NotFound);
             }
             await _userRepository.Remove(user);
             return user.MapTo<UserDto>();
@@ -91,7 +92,7 @@ namespace Emes.Erp.System.Implementation
         public Task<IEnumerable<UserDto>> Query(QueryUserDto request)
         {
             var query = _userRepository.Query.ToList();
-           
+
             return Task.FromResult(query.MapTo<UserDto>());
         }
 
@@ -136,6 +137,20 @@ namespace Emes.Erp.System.Implementation
             {
                 return Task.FromResult<UserDto>(null);
             }
+        }
+
+        /// <summary>
+        /// 认证用户
+        /// </summary>
+        /// <returns></returns>
+        public Task<AclDto> Acl()
+        {
+            var acl = new AclDto()
+            {
+                Id = Guid.Parse("d248b232-52e1-4055-8e2d-fcca1865a546"),
+                Abilities = new List<string>() { "1234" }
+            };
+            return Task.FromResult(acl);
         }
     }
 }

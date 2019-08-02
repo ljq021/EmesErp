@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { IOrganizationService } from './api/iOrganization.service';
 import { IPostService } from './api/iPost.service';
 import { IRoleService } from './api/iRole.service';
+import { ITestService } from './api/iTest.service';
 import { IUserService } from './api/iUser.service';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { IUserService } from './api/iUser.service';
     IOrganizationService,
     IPostService,
     IRoleService,
+    ITestService,
     IUserService ]
 })
 export class ApiModule {
