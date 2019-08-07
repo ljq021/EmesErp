@@ -13,6 +13,7 @@ import { NotificationService, ArrayService } from '@core';
 export class OrganizationListComponent extends BaseComponent implements OnInit {
   @ViewChild('f', { static: false }) f: NgForm;
   nodes = [];
+  selectNodes = [];
   initialOrg = {
     parentId: '',
     no: '',
@@ -40,14 +41,24 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   getList() {
     this.orgSrv.query({ request: {} }).subscribe((x: any) => {
       if (!x) return;
-      this.nodes = this.arrSrv.arrToTree(x, {
+      this.nodes = this.arrSrv.arrToTreeNode(x, {
         parentIdMapName: 'parentId',
+        titleMapName: 'name',
+      });
+      this.selectNodes = this.arrSrv.arrToTreeNode(x, {
+        parentIdMapName: 'parentId',
+        titleMapName: 'name',
       });
     });
   }
 
-  add() {
+  add($event) {
     this.org = this.initialOrg;
+  }
+  addChild($event) {
+    const pid = this.org.id;
+    this.org = this.initialOrg;
+    this.org.parentId = pid;
   }
   edit($event) {
     this.org = $event.node.origin;
@@ -55,19 +66,15 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
   save($event) {
     if (this.org.id === undefined) {
       this.orgSrv.create({ request: this.org }).subscribe(x => {
-        if (x.isSucceed) {
-          this.notifySrv.success();
-          this.getList();
-          this.reset();
-        }
+        this.notifySrv.success();
+        this.getList();
+        this.reset();
       });
     } else {
       this.orgSrv.update(this.org).subscribe(x => {
-        if (x.isSucceed) {
-          this.notifySrv.success();
-          this.getList();
-          this.reset();
-        }
+        this.notifySrv.success();
+        this.getList();
+        this.reset();
       });
     }
   }
@@ -80,7 +87,6 @@ export class OrganizationListComponent extends BaseComponent implements OnInit {
       });
     } else {
       this.notifySrv.info('请选择需要删除的记录！');
-      // this.edit();
     }
   }
 }

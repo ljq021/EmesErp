@@ -38,7 +38,7 @@
     "EnableChildrenMonitor": false
   },
   "Stage": {
-    "EnableHttps": true, // 不设置ports，默认httpsPort:443
+    "EnableHttps": false, // 不设置ports，默认httpsPort:443
     "CertificateFileName": "${CertificateFileName}|",
     "CertificateLocation": "${CertificateLocation}|pfxs",
     "CertificatePassword": "${CertificatePassword}|",
@@ -48,7 +48,7 @@
       "AuthorizationRoutePath": "api/user/authentication",
       "AuthorizationServiceKey": "User",
       "TokenEndpointPath": "api/oauth2/token",
-      "CacheMode": "MemoryCache" //MemoryCache or  gateway.Redis save token
+      "CacheMode": "gateway.Redis" //MemoryCache or  gateway.Redis save token
     },
     "AccessPolicy": {
       "Origins": [ "http://127.0.0.1:6630", "http://localhost:6630" ],
@@ -63,11 +63,11 @@
       {
         "Whitelist": "${whitelist}|192.168.10.50,192.168.43.0/24",
         "RoutePath": true,
-        "Enable": true
+        "Enable": false
       }
     ],
     "HttpsPort": "${StageHttpsPorts}|449,446",
-    "HttpPorts": "${StageHttpPorts}|285,282,283"
+    "HttpPorts": "${StageHttpPorts}|6631"
   },
   "Dns": {
     "RootDnsAddress": "192.168.1.1",
@@ -153,7 +153,8 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source = greatma.tpddns.cn,14330;Initial Catalog = EmesErp;User Id = sa;Password = Emes@123;"
+    "DefaultConnection": "Data Source = 127.0.0.1;Initial Catalog = EmesErp;User Id = sa;Password = 123456;"
+    //"DefaultConnection": "Data Source = greatma.tpddns.cn,14330;Initial Catalog = EmesErp;User Id = sa;Password = Emes@123;"
   },
   "Automapper": {
     "Assemblies": "Emes.Erp.System;Surging.*.Common;"
