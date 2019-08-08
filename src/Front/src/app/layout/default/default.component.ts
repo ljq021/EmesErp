@@ -11,7 +11,17 @@ import {
   Inject,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Router, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, NavigationError, NavigationCancel } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+  RouteConfigLoadStart,
+  RouteConfigLoadEnd,
+  NavigationError,
+  NavigationCancel,
+  ActivationEnd,
+  NavigationStart,
+  ActivatedRouteSnapshot,
+} from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { updateHostClass } from '@delon/util';
 import { SettingsService } from '@delon/theme';
@@ -20,6 +30,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { SettingDrawerComponent } from './setting-drawer/setting-drawer.component';
+import { ReuseTabService } from '@delon/abc';
 
 @Component({
   selector: 'layout-default',
@@ -30,6 +41,7 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild('settingHost', { read: ViewContainerRef, static: true })
   private settingHost: ViewContainerRef;
   isFetching = false;
+  rtHidden = false;
 
   constructor(
     router: Router,
@@ -38,12 +50,20 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
     private settings: SettingsService,
     private el: ElementRef,
     private renderer: Renderer2,
+    private reuseTabSrv: ReuseTabService,
     @Inject(DOCUMENT) private doc: any,
   ) {
     // scroll to top in change page
     router.events.pipe(takeUntil(this.unsubscribe$)).subscribe(evt => {
       if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
         this.isFetching = true;
+      }
+
+      if (evt instanceof ActivationEnd && router.url === this.getUrl(evt.snapshot)) {
+        this.rtHidden = false;
+        if (evt.snapshot.data && typeof evt.snapshot.data.reuseHidden === 'boolean') {
+          this.rtHidden = evt.snapshot.data.reuseHidden;
+        }
       }
       if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
         this.isFetching = false;
@@ -63,6 +83,22 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
     });
   }
 
+  private getUrl(route: ActivatedRouteSnapshot): string {
+    let next = route;
+    const segments: string[] = [];
+    while (next) {
+      segments.push(next.url.join('/'));
+      next = next.parent!;
+    }
+    const url =
+      '/' +
+      segments
+        .filter(i => i)
+        .reverse()
+        .join('/');
+    return url;
+  }
+
   private setClass() {
     const { el, doc, renderer, settings } = this;
     const layout = settings.layout;
@@ -77,12 +113,12 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     // Setting componet for only developer
-    if (true) {
-      setTimeout(() => {
-        const settingFactory = this.resolver.resolveComponentFactory(SettingDrawerComponent);
-        this.settingHost.createComponent(settingFactory);
-      }, 22);
-    }
+    // if (true) {
+    //   setTimeout(() => {
+    //     const settingFactory = this.resolver.resolveComponentFactory(SettingDrawerComponent);
+    //     this.settingHost.createComponent(settingFactory);
+    //   }, 22);
+    // }
   }
 
   ngOnInit() {

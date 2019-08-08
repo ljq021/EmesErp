@@ -39,9 +39,9 @@ namespace Emes.Erp.Host
                 .UseServer(options => { })
                 .UseConsoleLifetime()
                 .Configure(build =>
-                build.AddCacheFile("${cachepath}|Configs/cacheSettings.json", basePath: AppContext.BaseDirectory, optional: false, reloadOnChange: true))
+                build.AddCacheFile("Configs/cacheSettings.json", basePath: AppContext.BaseDirectory, optional: false, reloadOnChange: true))
                   .Configure(build =>
-                build.AddCPlatformFile("${surgingpath}|Configs/surgingSettings.json", optional: false, reloadOnChange: true))
+                build.AddCPlatformFile("Configs/surgingSettings.json", optional: false, reloadOnChange: true))
                 .UseStartup<Startup>()
                 .Build();
 

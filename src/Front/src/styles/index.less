@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+// 统一的最小高度及block
+.mhb {
+  min-height: 768px;
+  display: block;
+}
+
+//统一单行表单宽度与高度
+.single-fwh {
+  width: 500px;
+  min-height: 768px;
+}
+
+// 补充minicard header高度，用于左右布局，一边有header 一边没header的情况
+
+.fmch {
+  margin-bottom: @card-head-height-sm + @card-head-padding-sm / 2;
+
+}
+
+.mr4 {
+  margin-right: 4px;
+}
+
+.e_tree-node {
+  cursor: pointer;
+  width: 90%;
+  display: inline-block;
+}
+
+.e_tree-node-selected {
+  background-color: #f4f6f8;
+}

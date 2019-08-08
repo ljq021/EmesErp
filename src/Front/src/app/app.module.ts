@@ -3,8 +3,10 @@ import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
 
 // #region default language
+// Reference: https://ng-alain.com/docs/i18n
 import { default as ngLang } from '@angular/common/locales/zh';
 import { NZ_I18N, zh_CN as zorroLang } from 'ng-zorro-antd';
 import { DELON_LOCALE, zh_CN as delonLang } from '@delon/theme';
@@ -53,10 +55,10 @@ const FORM_MODULES = [JsonSchemaModule];
 
 // #region Http Interceptors
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SimpleInterceptor } from '@delon/auth';
+import { SimpleInterceptor, JWTInterceptor } from '@delon/auth';
 import { DefaultInterceptor } from '@core/net/default.interceptor';
 const INTERCEPTOR_PROVIDES = [
-  { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
 ];
 // #endregion
@@ -93,6 +95,7 @@ import { LayoutModule } from './layout/layout.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AgGridModule.withComponents([]),
     HttpClientModule,
     DelonModule.forRoot(),
     CoreModule,

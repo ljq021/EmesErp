@@ -1,3 +1,7 @@
+/**
+ * 进一步对基础模块的导入提炼
+ * 有关模块注册指导原则请参考：https://ng-alain.com/docs/module
+ */
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { throwIfAlreadyLoaded } from '@core';
 
@@ -26,11 +30,11 @@ const MOCK_MODULES = true ? [DelonMockModule.forRoot({ data: MOCKDATA })] : [];
 import { RouteReuseStrategy } from '@angular/router';
 import { ReuseTabService, ReuseTabStrategy } from '@delon/abc/reuse-tab';
 const REUSETAB_PROVIDES = [
-  // {
-  //   provide: RouteReuseStrategy,
-  //   useClass: ReuseTabStrategy,
-  //   deps: [ReuseTabService],
-  // },
+  {
+    provide: RouteReuseStrategy,
+    useClass: ReuseTabStrategy,
+    deps: [ReuseTabService],
+  },
 ];
 // #endregion
 

@@ -6,6 +6,21 @@ using Surging.Core.CPlatform.Transport.Implementation;
 
 namespace Emes.Core
 {
+    public class UserModel
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string SystemName { get; set; }
+        public bool IsLock { get; set; }
+        public DateTimeOffset EffectiveDate { get; set; }
+        public bool IsLimitDuplicateLogin { get; set; }
+        public string Notes { get; set; }
+        /// <summary>
+        /// 租户
+        /// </summary>
+        public long TenantId { get; set; }
+    }
     public class WorkContext
     {
         public static dynamic GetCurrentUser()
@@ -21,7 +36,7 @@ namespace Emes.Core
             }
             else
             {
-                return JsonConvert.DeserializeObject(payload as string);
+                return JsonConvert.DeserializeObject<UserModel>(JsonConvert.DeserializeObject(payload.ToString()).ToString());
             }
         }
     }

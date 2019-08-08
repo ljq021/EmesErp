@@ -1,0 +1,70 @@
+﻿<#@ template language="C#" hostSpecific="true" debug="false" #>
+<#@ output extension=".cs" #>
+<#
+        DefaultHost host = (DefaultHost)(Host);
+        var designer = host.Designer;
+#>
+#region Copyright
+//======================================================================
+//        NOTE: 当前文件是由工具自动生成，允许修改，覆盖请谨慎.
+//        Copyright (c) 2019-present anber<shuangyan_m@hotmail.com>
+//======================================================================
+#endregion
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Emes.Erp.I<#=designer.Module#>.Dtos.<#=designer.Codes#>;
+using Surging.Core.CPlatform.Filters.Implementation;
+using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
+
+namespace Emes.Erp.I<#=designer.Module#>
+{
+    /// <summary>
+    /// <#=designer.Name#>服务接口
+    /// </summary>
+    [ServiceBundle("api/{Service}")]
+    public interface I<#=designer.Code#>Service : IServiceKey
+    {
+        /// <summary>
+        /// 创建<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<<#=designer.Code#>Dto> Create(Create<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 更新<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<<#=designer.Code#>Dto> Update(Update<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 删除<#=designer.Name#>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<<#=designer.Code#>Dto> Delete(Delete<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 查询<#=designer.Name#>列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<IEnumerable<<#=designer.Code#>Dto>> Query(Query<#=designer.Code#>Dto request);
+
+        /// <summary>
+        /// 根据Id获取<#=designer.Name#>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<<#=designer.Code#>Dto> GetById(long id);
+
+
+    }
+}

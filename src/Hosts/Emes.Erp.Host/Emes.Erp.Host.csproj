@@ -8,6 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Configs\cacheSettings.json" />
+    <None Remove="Configs\consul.json" />
+    <None Remove="Configs\eventBusSettings.json" />
+    <None Remove="Configs\surgingSettings.json" />
+    <None Remove="Configs\Zookeeper.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configs\cacheSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\consul.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\eventBusSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\surgingSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\Zookeeper.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0-preview6.19304.10">
       <PrivateAssets>all</PrivateAssets>
@@ -31,55 +57,36 @@
     <ProjectReference Include="..\..\Libraries\Emes.Core\Emes.Core.csproj" />
     <ProjectReference Include="..\..\Modules\System\Emes.Erp.ISystem\Emes.Erp.ISystem.csproj" />
     <ProjectReference Include="..\..\Modules\System\Emes.Erp.System\Emes.Erp.System.csproj" />
-    <PackageReference Include="Surging.Core.Abp" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.ApiGateWay" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.AutoMapper" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Caching" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Codec.MessagePack" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Codec.ProtoBuffer" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Common" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Consul" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.CPlatform" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.DNS" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.DotNetty" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.EventBusKafka" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.EventBusRabbitMQ" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.KestrelHttpServer" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Log4net" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Nlog" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Protocol.Http" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Protocol.Mqtt" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Protocol.WS" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.ServiceHosting" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Spa" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Stage" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Swagger" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.System" Version="61.1.0" />
-    <PackageReference Include="Surging.Core.Zookeeper" Version="61.1.0" />
-    <PackageReference Include="Surging.WebSocketCore" Version="61.1.0" />
+    <PackageReference Include="Surging.Core.Abp" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.ApiGateWay" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.AutoMapper" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Caching" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Codec.MessagePack" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Common" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Consul" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.CPlatform" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.DNS" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.DotNetty" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.EventBusKafka" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.EventBusRabbitMQ" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.KestrelHttpServer" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Log4net" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Nlog" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Protocol.Http" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Protocol.Mqtt" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Protocol.WS" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.ProxyGenerator" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.ServiceHosting" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.Swagger" Version="61.1.3" />
+    <PackageReference Include="Surging.Core.System" Version="61.1.3" />
+    <PackageReference Include="Surging.WebSocketCore" Version="61.1.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Configs\cacheSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Configs\consul.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Configs\eventBusSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Configs\surgingSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Configs\Zookeeper.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="NLog.config">
