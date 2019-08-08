@@ -26,7 +26,6 @@ namespace Emes.Erp.ISystem.Dtos.Users
         /// 系统账户
         /// Desc:是否系统账户
         /// </summary>
-        [Required(ErrorMessage = "系统账户是必填项")]
         public bool IsSystemAccount { get; set; }
 /// <summary>
         /// 姓名
@@ -38,7 +37,6 @@ namespace Emes.Erp.ISystem.Dtos.Users
         /// 系统名称
         /// Desc:系统名称
         /// </summary>
-        [Required(ErrorMessage = "系统名称是必填项")]
         public string SystemName { get; set; }
 /// <summary>
         /// 锁定

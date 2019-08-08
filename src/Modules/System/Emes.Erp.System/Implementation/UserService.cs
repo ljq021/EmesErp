@@ -42,6 +42,8 @@ namespace Emes.Erp.System.Implementation
                 throw new ValidateException(request.Message());
             }
             var user = request.MapTo<User>();
+            user.IsSystemAccount = false;
+            user.SystemName = "emes_" + user.Name;
             await _userRepository.Add(user);
             return user.MapTo<UserDto>();
 
