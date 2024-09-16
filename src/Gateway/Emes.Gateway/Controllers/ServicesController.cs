@@ -5,7 +5,11 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Emes.Gateway.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using Surging.Core.ApiGateWay;
 using Surging.Core.ApiGateWay.OAuth;
 using Surging.Core.CPlatform;
@@ -34,7 +38,7 @@ namespace Emes.Gateway.Controllers
             _authorizationServerProvider = authorizationServerProvider;
         }
 
-        public async Task<ServiceResult<object>> Path([FromServices]IServicePartProvider servicePartProvider, string path, [FromBody]Dictionary<string, object> model)
+        public async Task<IActionResult> Path([FromServices]IServicePartProvider servicePartProvider, string path, [FromBody]Dictionary<string, object> model)
         {
             string serviceKey = this.Request.Query["servicekey"];
             path = path.IndexOf("/") < 0 ? $"/{path}" : path;
@@ -47,11 +51,12 @@ namespace Emes.Gateway.Controllers
                 model[n] = this.Request.Query[n].ToString();
             }
             ServiceResult<object> result = ServiceResult<object>.Create(false, null);
-            var route = await _serviceRouteProvider.GetRouteByPathRegex(path);
-            path = String.Compare(route.ServiceDescriptor.RoutePath, GateWayAppConfig.TokenEndpointPath, true) == 0 ?
+
+            path = String.Compare(path.ToLower(), GateWayAppConfig.TokenEndpointPath, true) == 0 ?
                 GateWayAppConfig.AuthorizationRoutePath : path.ToLower();
+            var route = await _serviceRouteProvider.GetRouteByPathRegex(path);
             if (!GetAllowRequest(route))
-                return new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.RequestError, Message = "Request error" };
+                return Json(new ServiceResult<object> { IsSucceed = false, StatusCode = (int)ServiceStatusCode.RequestError, Message = "Request error" });
             if (servicePartProvider.IsPart(path))
             {
                 result = ServiceResult<object>.Create(true, await servicePartProvider.Merge(path, model));
@@ -66,8 +71,11 @@ namespace Emes.Gateway.Controllers
                     if (path == GateWayAppConfig.AuthorizationRoutePath)
                     {
                         var token = await _authorizationServerProvider.GenerateTokenCredential(model);
+
                         if (token != null)
                         {
+                            //var payload = _authorizationServerProvider.GetPayloadString(token);
+                            //var user = JsonConvert.DeserializeObject<UserModel>(JsonConvert.DeserializeObject(payload).ToString());
                             result = ServiceResult<object>.Create(true, token);
                             result.StatusCode = (int)ServiceStatusCode.Success;
                         }
@@ -101,7 +109,7 @@ namespace Emes.Gateway.Controllers
                     }
                 }
             }
-            return result;
+            return Json(result);
         }
 
         private bool GetAllowRequest(ServiceRoute route)

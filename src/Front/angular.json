@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "emes",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -75,7 +75,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "EmesFront:build"
+            "browserTarget": "EmesFront:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

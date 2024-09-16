@@ -20,13 +20,13 @@
     "directive-selector": [
       true,
       "attribute",
-      ["app", "passport", "exception", "layout", "header"],
+      ["app", "passport", "exception", "layout", "header","emes"],
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      ["app", "passport", "exception", "layout", "header"],
+      ["app", "passport", "exception", "layout", "header","emes"],
       "kebab-case"
     ],
     "import-blacklist": [

@@ -113,23 +113,23 @@ export class StartupService {
             children: [
               {
                 text: '组织机构管理',
-                link: '/dashboard/v1',
+                link: '/system/organization',
               },
               {
                 text: '岗位管理',
-                link: '/dashboard/v1',
+                link: '/system/post',
               },
               {
                 text: '角色管理',
-                link: '/dashboard/v1',
+                link: '/system/role',
               },
               {
                 text: '用户管理',
-                link: '/dashboard/v1',
+                link: '/system/user',
               },
               {
                 text: '组织机构图',
-                link: '/dashboard/v1',
+                link: '/system/orgmap',
               },
             ],
           },

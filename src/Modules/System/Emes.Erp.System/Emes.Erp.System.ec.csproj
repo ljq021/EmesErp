@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\ecore\src\Surging.Core\Surging.Core.AutoMapper\Surging.Core.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\..\..\ecore\src\Surging.Core\Surging.Core.Common\Surging.Core.Common.csproj" />
+    <ProjectReference Include="..\..\..\..\ecore\src\Surging.Core\Surging.Core.ProxyGenerator\Surging.Core.ProxyGenerator.csproj" />
+    <ProjectReference Include="..\..\..\Libraries\Emes.Core\Emes.Core.ec.csproj" />
+    <ProjectReference Include="..\Emes.Erp.ISystem\Emes.Erp.ISystem.ec.csproj" />
+  </ItemGroup>
+
+</Project>
